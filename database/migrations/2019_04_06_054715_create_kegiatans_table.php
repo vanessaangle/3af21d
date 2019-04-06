@@ -13,9 +13,17 @@ class CreateKegiatansTable extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatans', function (Blueprint $table) {
+        Schema::create('kegiatan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('desa_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('judul_kegiatan');
+            $table->text('isi_kegiatan');
+            $table->text('foto_kegiatan');
             $table->timestamps();
+
+            $table->foreign('desa_id')->references('id')->on('desa');
+            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 
@@ -26,6 +34,6 @@ class CreateKegiatansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kegiatans');
+        Schema::dropIfExists('kegiatan');
     }
 }

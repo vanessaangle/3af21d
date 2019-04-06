@@ -15,7 +15,11 @@ class CreateGambarDepansTable extends Migration
     {
         Schema::create('gambar_depans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('desa_id')->unsigned();
+            $table->string('gambar');
             $table->timestamps();
+
+            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 

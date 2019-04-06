@@ -15,7 +15,19 @@ class CreatePenduduksTable extends Migration
     {
         Schema::create('penduduks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('desa_id')->unsigned();
+            $table->string('nik')->unique();
+            $table->string('nama');
+            $table->string('jenis_kelamin');
+            $table->string('tempat_lahir');
+            $table->date('tgl_lahir');
+            $table->string('agama');
+            $table->string('pekerjaan');
+            $table->string('golongan_darah');
+            $table->string('status');
             $table->timestamps();
+
+            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 

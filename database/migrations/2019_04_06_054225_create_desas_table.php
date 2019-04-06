@@ -13,8 +13,13 @@ class CreateDesasTable extends Migration
      */
     public function up()
     {
-        Schema::create('desas', function (Blueprint $table) {
+        Schema::create('desa', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama_desa');
+            $table->text('deskripsi');
+            $table->string('alamat');
+            $table->string('email')->unique();
+            $table->string('status_desa');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateDesasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('desas');
+        Schema::dropIfExists('desa');
     }
 }

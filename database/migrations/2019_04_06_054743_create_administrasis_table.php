@@ -13,9 +13,14 @@ class CreateAdministrasisTable extends Migration
      */
     public function up()
     {
-        Schema::create('administrasis', function (Blueprint $table) {
+        Schema::create('administrasi', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('desa_id')->unsigned();
+            $table->string('file');
+            $table->string('judul');
             $table->timestamps();
+
+            $table->foreign('desa_id')->references('id')->on('desa');
         });
     }
 
@@ -26,6 +31,6 @@ class CreateAdministrasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administrasis');
+        Schema::dropIfExists('administrasi');
     }
 }
