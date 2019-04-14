@@ -19,6 +19,7 @@ class CreateAdministrasisTable extends Migration
             $table->string('file');
             $table->string('judul');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('desa_id')->references('id')->on('desa');
         });

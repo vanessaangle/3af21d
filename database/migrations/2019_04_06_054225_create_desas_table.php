@@ -20,6 +20,7 @@ class CreateDesasTable extends Migration
             $table->string('alamat');
             $table->string('email')->unique();
             $table->string('status_desa');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

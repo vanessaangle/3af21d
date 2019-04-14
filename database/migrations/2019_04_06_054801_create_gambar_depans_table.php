@@ -13,11 +13,12 @@ class CreateGambarDepansTable extends Migration
      */
     public function up()
     {
-        Schema::create('gambar_depans', function (Blueprint $table) {
+        Schema::create('gambar_depan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('desa_id')->unsigned();
             $table->string('gambar');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('desa_id')->references('id')->on('desa');
         });
@@ -30,6 +31,6 @@ class CreateGambarDepansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gambar_depans');
+        Schema::dropIfExists('gambar_depan');
     }
 }

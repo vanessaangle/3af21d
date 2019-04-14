@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('alamat');
             $table->string('role');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('desa_id')->references('id')->on('desa');
         });

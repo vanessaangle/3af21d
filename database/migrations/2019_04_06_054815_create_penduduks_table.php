@@ -13,7 +13,7 @@ class CreatePenduduksTable extends Migration
      */
     public function up()
     {
-        Schema::create('penduduks', function (Blueprint $table) {
+        Schema::create('penduduk', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('desa_id')->unsigned();
             $table->string('nik')->unique();
@@ -26,6 +26,7 @@ class CreatePenduduksTable extends Migration
             $table->string('golongan_darah');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('desa_id')->references('id')->on('desa');
         });
@@ -38,6 +39,6 @@ class CreatePenduduksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penduduks');
+        Schema::dropIfExists('penduduk');
     }
 }

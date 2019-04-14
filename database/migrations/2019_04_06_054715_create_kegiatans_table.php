@@ -21,6 +21,7 @@ class CreateKegiatansTable extends Migration
             $table->text('isi_kegiatan');
             $table->text('foto_kegiatan');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('desa_id')->references('id')->on('desa');
             $table->foreign('user_id')->references('id')->on('user');
