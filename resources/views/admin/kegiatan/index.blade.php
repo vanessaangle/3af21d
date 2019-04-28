@@ -33,11 +33,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Email</th>
-                                        <th>Nama</th>
-                                        <th>Role</th>
+                                        <th>Judul Kegiatan</th>
+                                        <th>Kategori</th>
                                         <th>Desa</th>
-                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -45,11 +43,9 @@
                                     @foreach($data as $key => $row)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$row->email}}</td>
-                                            <td>{{$row->nama}}</td>
-                                            <td>{{$row->role}}</td>
+                                            <td>{{$row->judul_kegiatan}}</td>
+                                            <td>{{$row->kategori}}</td>
                                             <td>{{$row->desa->nama_desa}}</td>
-                                            <td>{{$row->status == 1 ? 'Aktif' : 'Tidak Aktif'}}</td>
                                             <td>
                                                 <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>

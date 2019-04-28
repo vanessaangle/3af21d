@@ -18,6 +18,7 @@ class CreateKegiatansTable extends Migration
             $table->bigInteger('desa_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->string('judul_kegiatan');
+            $table->string('kategori');
             $table->text('isi_kegiatan');
             $table->text('foto_kegiatan');
             $table->timestamps();

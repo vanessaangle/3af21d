@@ -56,6 +56,7 @@
 @endsection
 @push('js')
     <!-- page script -->
+    <script src="{{asset('admin-lte/bower_components/ckeditor/ckeditor.js')}}"></script>
      <script>
         var map, marker;
          function initMap(){

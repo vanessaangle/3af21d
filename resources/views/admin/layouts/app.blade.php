@@ -135,7 +135,14 @@
                             </a>
                         </li>   
                     @endif
-                    
+                    @if(AppHelper::access(['Kepala Desa']))
+                    <li class="{{$template->menu == 'kegiatan' ? 'active' : ''}}">
+                        <a href="{{route('admin.kegiatan.index')}}"  >
+                            <i class="fa fa-group"></i> 
+                            <span>Manajemen Kegiatan</span>
+                        </a>
+                    </li>   
+                @endif
                     
                 </ul>
             </section>

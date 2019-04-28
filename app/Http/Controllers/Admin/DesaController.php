@@ -145,6 +145,8 @@ class DesaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Desa::find($id)->delete();
+        Alert::make('success','Berhasil menghapus data');
+        return redirect(route($this->template['route'].'.index'));
     }
 }

@@ -45,13 +45,23 @@
                                 <tbody>
                                     <tbody>                                                                                       
                                        @foreach ($form as $item)
-                                           @if ($item['name'] != 'password')
-                                           <tr>
+                                            @if (array_key_exists('type',$item) && $item['type'] == 'password')
+                                            
+                                            @elseif(array_key_exists('type',$item) && $item['type'] == 'file')
+                                            <tr>
                                                 <td>{{$item['label']}}</td>
                                                 <td>:</td>
-                                                <td>{{$data->{$item['name']} }}</td>
+                                                <td>
+                                                    <a href="{{asset($data->{$item['name']})}}" target="_blank">{{$data->{$item['name']} }}</a>
+                                                </td>
                                             </tr>
-                                           @endif
+                                            @else
+                                            <tr>
+                                                <td>{{$item['label']}}</td>
+                                                <td>:</td>
+                                                <td>{!! $data->{$item['name']} !!}</td>
+                                            </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </tbody>

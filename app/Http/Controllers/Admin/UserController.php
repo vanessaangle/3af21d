@@ -183,7 +183,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        Alert::make('success','Berhasil menghapus data');
+        return redirect(route($this->template['route'].'.index'));
     }
 
     public function profile()
