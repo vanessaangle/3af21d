@@ -10,7 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'admin','namespace' => 'Admin'], function(){
+    Route::get('/','DashboardController@index')->name('admin.dashboard.index');
+    Route::get('/user/profile','UserController@profile')->name('user.profile');
+    Route::resources([
+        '/user' => 'UserController'
+    ]);
 });

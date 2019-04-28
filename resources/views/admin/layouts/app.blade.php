@@ -84,7 +84,10 @@
                                         <a href="{{route('user.profile')}}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{{route('admin.auth.logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="#" class="btn btn-default btn-flat" onclick="$('#frmLogout').submit()">Sign out</a>
+                                        <form action="{{route('logout')}}" method="POST" id="frmLogout">
+                                            {{ csrf_field() }}
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
