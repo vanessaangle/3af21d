@@ -44,23 +44,15 @@
                                 </thead>
                                 <tbody>
                                     <tbody>                                                                                       
-                                        <tr>
-                                            <td>Nama Desa</td>
-                                            <td>:</td>
-                                            <td>{{$data->nama_desa}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Status Desa</td>
-                                            <td>:</td>
-                                            <td>{{$data->status_desa}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lokasi Desa</td>
-                                            <td>:</td>
-                                            <td>
-                                                <div id='google_map' style='height:400px;'></div>
-                                            </td>
-                                        </tr>
+                                       @foreach ($form as $item)
+                                           @if ($item['name'] != 'password')
+                                           <tr>
+                                                <td>{{$item['label']}}</td>
+                                                <td>:</td>
+                                                <td>{{$data->{$item['name']} }}</td>
+                                            </tr>
+                                           @endif
+                                        @endforeach
                                     </tbody>
                                 </tbody>
                             </table>
@@ -68,7 +60,6 @@
                         <div class="box-footer">                                
                             <a href="{{ url()->previous() }}" class="btn btn-default">Kembali</a>
                         </div>
-                        
                     </div>
                 </div>
            </div>

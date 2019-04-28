@@ -33,9 +33,10 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Username</th>
+                                        <th>Email</th>
                                         <th>Nama</th>
                                         <th>Role</th>
+                                        <th>Desa</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -44,13 +45,19 @@
                                     @foreach($data as $key => $row)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$row->username}}</td>
+                                            <td>{{$row->email}}</td>
                                             <td>{{$row->nama}}</td>
                                             <td>{{$row->role}}</td>
+                                            <td>{{$row->desa->nama_desa}}</td>
                                             <td>{{$row->status == 1 ? 'Aktif' : 'Tidak Aktif'}}</td>
                                             <td>
                                                 <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>
+                                                <a href="#" class="btn btn-danger btn-sm" onclick="confirm('Lanjutkan ?') ? $('#frmDelete').submit() : ''">Hapus</a>
+                                                <form action="{{route("$template->route".'.destroy',[$row->id])}}" method="POST" id="frmDelete">
+                                                    {{ csrf_field() }}
+                                                    @method('DELETE')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

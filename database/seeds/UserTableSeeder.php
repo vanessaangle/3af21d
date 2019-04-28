@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
             'tgl_lahir' => '1994-09-17',
             'telepon' => '+62',
             'alamat' => '-',
-            'role' => 'admin'
+            'role' => 'Admin'
         ]);
     }
 }

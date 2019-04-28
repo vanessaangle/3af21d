@@ -51,7 +51,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>GIS</b></span>
+                <span class="logo-lg"><b>CLOUD DESA</b></span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -81,7 +81,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="{{route('user.profile')}}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="{{route('admin.user.profile')}}" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="$('#frmLogout').submit()">Sign out</a>
@@ -118,40 +118,18 @@
                             <i class="fa fa-home"></i> <span>Dashboard</span>                            
                         </a>
                     </li>
-
-                    {{-- //menentukan hak akses user --}}
                     @if(AppHelper::access(['Admin']))
-                        <li class="{{$template->menu == 'desa' ? 'active' : ''}}">
-                            <a href="{{route('desa.index')}}"  >
-                                <i class="fa fa-map"></i> 
-                                <span>Desa</span>
-                            </a>
-                        </li>   
-                    @endif
-
-                    {{-- //menentukan hak akses user --}}
-                    @if(AppHelper::access(['Operator']))
-                        <li class="{{$template->menu == 'penduduk' ? 'active' : ''}}">
-                            <a href="{{route('penduduk.index')}}"  >
-                                <i class="fa fa-users"></i> 
-                                <span>Penduduk</span>
-                            </a>
-                        </li>   
-                    @endif
-
-                    @if(AppHelper::access(['Operator','Admin']))
-                        <li class="{{$template->menu == 'web' ? 'active' : ''}}">
-                            <a href="{{route('web.index')}}"  >
-                                <i class="fa fa-globe"></i> 
-                                <span>Website</span>
-                            </a>
-                        </li>   
-                    @endif
-                    
+                    <li class="{{$template->menu == 'desa' ? 'active' : ''}}">
+                        <a href="{{route('admin.desa.index')}}"  >
+                            <i class="fa fa-map"></i> 
+                            <span>Manajemen Desa</span>
+                        </a>
+                    </li>   
+                @endif
                     {{-- //menentukan hak akses user --}}
                     @if(AppHelper::access(['Admin']))
                         <li class="{{$template->menu == 'user' ? 'active' : ''}}">
-                            <a href="{{route('user.index')}}"  >
+                            <a href="{{route('admin.user.index')}}"  >
                                 <i class="fa fa-user"></i> 
                                 <span>Manajemen User</span>
                             </a>

@@ -35,6 +35,8 @@
                                         <th>No</th>
                                         <th>Desa</th>
                                         <th>Status</th>
+                                        <th>Maks. Pengguna</th>
+                                        <th>Maks. Kegiatan</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
@@ -44,6 +46,8 @@
                                             <td>{{$key+1}}</td>
                                             <td>{{$row->nama_desa}}</td>
                                             <td>{{$row->status_desa}}</td>
+                                            <td>{{$row->user_limit}}</td>
+                                            <td>{{$row->limit_kegiatan}}</td>
                                             <td>
                                                 <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>
