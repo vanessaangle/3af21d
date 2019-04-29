@@ -7,6 +7,27 @@ use App\Http\Controllers\Controller;
 
 class PendudukController extends Controller
 {
+    private $template = [
+        'title' => "Penduduk",
+        'route' => 'admin.penduduk',
+        'menu' => 'penduduk',
+        'icon' => 'fa fa-group',
+        'theme' => 'skin-red'
+    ];
+
+    public function form(){
+        $jenis = [
+            ['value' => 'Laki Laki','name' => 'Laki Laki'],
+            ['value' => 'Perempuan','name' => 'Perempuan']
+        ];
+
+        return [
+           ['label' => 'NIK','name' => 'nik','view_index' => true],
+           ['label' => 'Nama','name' => 'name','view_index' => true],
+           ['label' => 'Jenis Kelamin', 'name' => 'jenis_kelamin','type' => 'select', 'option' => $jenis, 'view_index' => true],
+           ['label' => '']
+        ];
+    }
     /**
      * Display a listing of the resource.
      *

@@ -153,7 +153,7 @@
                     @endif
                     @if(AppHelper::access(['Kepala Desa','Petugas']))
                         <li class="{{$template->menu == 'penduduk' ? 'active' : ''}}">
-                            <a href="{{route('admin.petugas.index')}}"  >
+                            <a href="{{route('admin.penduduk.index')}}"  >
                                 <i class="fa fa-users"></i> 
                                 <span>Manajemen Penduduk</span>
                             </a>
