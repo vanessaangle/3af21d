@@ -135,15 +135,30 @@
                             </a>
                         </li>   
                     @endif
+                    @if(AppHelper::access(['Kepala Desa','Petugas']))
+                        <li class="{{$template->menu == 'kegiatan' ? 'active' : ''}}">
+                            <a href="{{route('admin.kegiatan.index')}}"  >
+                                <i class="fa fa-group"></i> 
+                                <span>Manajemen Kegiatan</span>
+                            </a>
+                        </li>   
+                    @endif
                     @if(AppHelper::access(['Kepala Desa']))
-                    <li class="{{$template->menu == 'kegiatan' ? 'active' : ''}}">
-                        <a href="{{route('admin.kegiatan.index')}}"  >
-                            <i class="fa fa-group"></i> 
-                            <span>Manajemen Kegiatan</span>
-                        </a>
-                    </li>   
-                @endif
-                    
+                        <li class="{{$template->menu == 'petugas' ? 'active' : ''}}">
+                            <a href="{{route('admin.petugas.index')}}"  >
+                                <i class="fa fa-user"></i> 
+                                <span>Manajemen Petugas</span>
+                            </a>
+                        </li>   
+                    @endif
+                    @if(AppHelper::access(['Kepala Desa','Petugas']))
+                        <li class="{{$template->menu == 'penduduk' ? 'active' : ''}}">
+                            <a href="{{route('admin.petugas.index')}}"  >
+                                <i class="fa fa-users"></i> 
+                                <span>Manajemen Penduduk</span>
+                            </a>
+                        </li>   
+                    @endif
                 </ul>
             </section>
             <!-- /.sidebar -->

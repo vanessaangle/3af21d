@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     Route::resources([
         '/user' => 'UserController',
         '/desa' => 'DesaController',
-        '/kegiatan' => 'KegiatanController'
+        '/kegiatan' => 'KegiatanController',
+        '/petugas' => 'PetugasController',
+        '/penduduk' => 'PendudukController'
     ]);
 });

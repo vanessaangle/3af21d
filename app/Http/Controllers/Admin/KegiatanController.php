@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Kegiatan;
 use App\Helpers\AppHelper;
 use App\Helpers\Alert;
+use App\Rules\PackageLimit;
 
 class KegiatanController extends Controller
 {
@@ -23,7 +24,7 @@ class KegiatanController extends Controller
             ['label' => 'Judul Kegiatan', 'name' => 'judul_kegiatan'],
             ['label' => 'Isi Kegiatan', 'name' => 'isi_kegiatan','type' => 'ckeditor'],
             ['label' => 'Kategori', 'name' => 'kategori'],
-            ['label' => 'Foto Kegiatan', 'name' => 'foto_kegiatan', 'type' => 'file']
+            ['label' => 'Foto Kegiatan', 'name' => 'foto_kegiatan', 'type' => 'file','required' => ['create']]
         ];
     }
     /**
@@ -60,8 +61,9 @@ class KegiatanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_kegiatan' => 'required',
+            'judul_kegiatan' => ['required',new PackageLimit('Kegiatan','limit_kegiatan',auth()->user()->desa_id)],
             'isi_kegiatan' => 'required',
+            'kategori' => 'required',
             'foto_kegiatan' => 'required|mimes:png,jpg,jpeg'
         ]);
         $file = AppHelper::uploader($this->form(),$request);
@@ -114,7 +116,27 @@ class KegiatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'judul_kegiatan' => 'required',
+            'isi_kegiatan' => 'required',
+            'kategori' => 'required',
+        ]);
+        $kegiatan = Kegiatan::findOrFail($id);
+        $foto = $kegiatan->foto_kegiatan;
+        if($request->hasFile('foto_kegiatan')){
+            $request->validate([
+                'foto_kegiatan' => 'mimes:jpg,png,jpeg'
+            ]);
+            $foto = AppHelper::uploader($this->form(),$request)['foto_kegiatan'];
+        }
+        $kegiatan->update([
+            'judul_kegiatan' => $request->judul_kegiatan,
+            'isi_kegiatan' => $request->isi_kegiatan,
+            'foto_kegiatan' => $foto,
+            'kategori' => $request->kategori
+        ]);
+        Alert::make('success','Berhasil  simpan data');
+        return redirect(route($this->template['route'].'.index'));
     }
 
     /**
@@ -125,6 +147,8 @@ class KegiatanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kegiatan::find($id)->delete();
+        Alert::make('success','Berhasil hapus data');
+        return redirect(route($this->template['route'].'.index'));
     }
 }
