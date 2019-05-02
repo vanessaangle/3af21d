@@ -4,25 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Administrasi;
-use App\Helpers\AppHelper;
+use App\GambarDepan;
 use Alert;
+use App\Helpers\AppHelper;
 
-class AdministrasiController extends Controller
+class WebController extends Controller
 {
     private $template = [
-        'title' => "Administrasi",
-        'route' => 'admin.administrasi',
-        'menu' => 'administrasi',
-        'icon' => 'fa fa-users',
+        'title' => "Web",
+        'route' => 'admin.web',
+        'menu' => 'web',
+        'icon' => 'fa fa-globe',
         'theme' => 'skin-red'
     ];
 
     public function form(){
-        return [
-            ['label' => 'Judul', 'name' => 'judul','view_index' => true],
-            ['label' => 'File', 'name' => 'file','view_index' => true,'type' => 'file','required' => ['create']],
-        ];
+       return [
+           ['label' => 'Slide Gambar','name' => 'gambar', 'type' => 'file','view_index' => true]
+       ];
     }
     /**
      * Display a listing of the resource.
@@ -31,7 +30,7 @@ class AdministrasiController extends Controller
      */
     public function index()
     {
-        $data = Administrasi::where('desa_id',auth()->user()->desa_id)
+        $data = GambarDepan::where('desa_id',auth()->user()->desa_id)
             ->get();
         $form = $this->form();
         $template = (object) $this->template;
@@ -59,14 +58,12 @@ class AdministrasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'file' => 'required'
+            'gambar' => 'required|mimes:jpg,png,jpeg'
         ]);
         $files = AppHelper::uploader($this->form(),$request);
-        Administrasi::create([
+        GambarDepan::create([
             'desa_id' => auth()->user()->desa_id,
-            'file' => $files['file'],
-            'judul' => $request->judul
+            'gambar' => $files['gambar']
         ]);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
@@ -82,7 +79,7 @@ class AdministrasiController extends Controller
     {
         $template = (object) $this->template;
         $form = $this->form();
-        $data = Administrasi::findOrFail($id);
+        $data = GambarDepan::findOrFail($id);
         return view('admin.desa.show',compact('template','form','data'));
     }
 
@@ -96,7 +93,7 @@ class AdministrasiController extends Controller
     {
         $template = (object) $this->template;
         $form = $this->form();
-        $data = Administrasi::findOrFail($id);
+        $data = GambarDepan::findOrFail($id);
         return view('admin.desa.edit',compact('template','form','data'));
     }
 
@@ -110,16 +107,15 @@ class AdministrasiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required'
+            'gambar' => 'required|mimes:jpg,png,jpeg'
         ]);
-        $adm = Administrasi::find($id);
-        $file = $adm->file;
-        if($request->hasFile('file')){
-            $file = AppHelper::uploader($this->form(),$request)['file'];
+        $gambarDepan = GambarDepan::find($id);
+        $gbr = $gambarDepan->gambar;
+        if($request->hasFile('gambar')){
+            $gbr = AppHelper::uploader($this->form(),$request)['gambar'];
         }
-        $adm->update([
-            'judul' => $request->judul,
-            'file' => $file
+        $gambarDepan->update([
+            'gambar' => $gbr
         ]);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
@@ -133,7 +129,7 @@ class AdministrasiController extends Controller
      */
     public function destroy($id)
     {
-        Administrasi::find($id)->delete();
+        GambarDepan::find($id)->delete();
         Alert::make('success','Berhasil hapus data');
         return redirect(route($this->template['route'].'.index'));
     }

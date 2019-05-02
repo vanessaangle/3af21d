@@ -159,6 +159,22 @@
                             </a>
                         </li>   
                     @endif
+                    @if(AppHelper::access(['Petugas']))
+                        <li class="{{$template->menu == 'web' ? 'active' : ''}}">
+                            <a href="{{route('admin.web.index')}}"  >
+                                <i class="fa fa-globe"></i> 
+                                <span>Manajemen Web</span>
+                            </a>
+                        </li>   
+                    @endif
+                    @if(AppHelper::access(['Petugas']))
+                        <li class="{{$template->menu == 'administrasi' ? 'active' : ''}}">
+                            <a href="{{route('admin.administrasi.index')}}"  >
+                                <i class="fa fa-users"></i> 
+                                <span>Manajemen Administrasi</span>
+                            </a>
+                        </li>   
+                    @endif
                 </ul>
             </section>
             <!-- /.sidebar -->
