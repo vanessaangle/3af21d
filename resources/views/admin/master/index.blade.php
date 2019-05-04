@@ -32,27 +32,38 @@
                             <table class="table" id="datatables">
                                 <thead>
                                     <tr>
-                                        <th>NIK</th>
-                                        <th>Nama</th>
-                                        <th>Alamat</th>
-                                        <th>Tanggal Lahir</th>
-                                        <th>Agama</th>
-                                        <th>Status</th>
-                                        <th>Opsi</th>
+                                        <td>No.</td>
+                                        @foreach ($form as $item)
+                                            @if (array_key_exists('view_index',$item) && $item['view_index'])
+                                                <td>{{$item['label']}}</td>
+                                            @endif
+                                        @endforeach
+                                        <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($data as $key => $row)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$row->nik}}</td>
-                                            <td>{{$row->nama}}</td>
-                                            <td>{{$row->alamat}}</td>
-                                            <td>{{$row->agama}}</td>
-                                            <td>{{$row->status}}</td>
+                                            @foreach ($form as $item)
+                                                @if (array_key_exists('view_index',$item) && $item['view_index'])
+                                                    <td>
+                                                        @if (array_key_exists('view_relation',$item))
+                                                        {{ AppHelper::viewRelation($row,$item['view_relation']) }}
+                                                        @else
+                                                        {{ $row->{$item['name']} }}
+                                                        @endif
+                                                    </td>
+                                                @endif
+                                            @endforeach
                                             <td>
                                                 <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>
+                                                <a href="#" class="btn btn-danger btn-sm" onclick="confirm('Lanjutkan ?') ? $('#frmDelete{{$row->id}}').submit() : ''">Hapus</a>
+                                                <form action="{{route("$template->route".'.destroy',[$row->id])}}" method="POST" id="frmDelete{{$row->id}}">
+                                                    {{ csrf_field() }}
+                                                    @method('DELETE')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -82,5 +93,4 @@
         })
     })
     </script>
-    
 @endpush

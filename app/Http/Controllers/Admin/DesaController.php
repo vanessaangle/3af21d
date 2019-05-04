@@ -20,13 +20,13 @@ class DesaController extends Controller
     private function form()
     {
         return [
-            ['label' => 'Nama Desa', 'name' => 'nama_desa'],
+            ['label' => 'Nama Desa', 'name' => 'nama_desa','view_index' => true],
             ['label' => 'Deskripsi Desa', 'name' => 'deskripsi', 'type' => 'textarea'],
             ['label' => 'Alamat','name' => 'alamat','type' => 'textarea'],
-            ['label' => 'Email','name' => 'email','type' => 'email'],
-            ['label' => 'Status Desa', 'name' => 'status_desa'],
-            ['label' => 'Maksimal User', 'name' => 'user_limit','type' => 'number'],
-            ['label' => 'Maksimal Kegiatan','name' => 'limit_kegiatan', 'type' => 'number'],
+            ['label' => 'Email','name' => 'email','type' => 'email','view_index' => true],
+            ['label' => 'Status Desa', 'name' => 'status_desa','view_index' => true],
+            ['label' => 'Maksimal User', 'name' => 'user_limit','type' => 'number','view_index' => true],
+            ['label' => 'Maksimal Kegiatan','name' => 'limit_kegiatan', 'type' => 'number','view_index' => true],
         ];
     }
     /**
@@ -38,7 +38,8 @@ class DesaController extends Controller
     {
         $template = (object) $this->template;
         $data = Desa::all();
-        return view('admin.desa.index',compact('template','data'));
+        $form = $this->form();
+        return view('admin.master.index',compact('template','data','form'));
     }
 
     /**
@@ -50,7 +51,7 @@ class DesaController extends Controller
     {
         $template = (object)$this->template;
         $form = $this->form();
-        return view('admin.user.create',compact('template','form'));
+        return view('admin.master.create',compact('template','form'));
     }
 
     /**
@@ -96,7 +97,7 @@ class DesaController extends Controller
         $template = (object)$this->template;
         $form = $this->form();
         $data = Desa::findOrFail($id);
-        return view('admin.desa.show',compact('template','data','form'));
+        return view('admin.master.show',compact('template','data','form'));
     }
 
     /**
@@ -110,7 +111,7 @@ class DesaController extends Controller
         $data = Desa::findOrFail($id);
         $template = (object)$this->template;
         $form = $this->form();
-        return view('admin.user.edit',compact('template','form','data'));
+        return view('admin.master.edit',compact('template','form','data'));
     }
 
     /**

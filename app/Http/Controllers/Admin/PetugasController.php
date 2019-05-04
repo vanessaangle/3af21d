@@ -48,7 +48,7 @@ class PetugasController extends Controller
             ->get();
         $form = $this->form();
         $template = (object) $this->template;
-        return view('admin.petugas.index',compact('data','form','template'));
+        return view('admin.master.index',compact('data','form','template'));
     }
 
     /**
@@ -60,7 +60,7 @@ class PetugasController extends Controller
     {
         $form = $this->form();
         $template = (object) $this->template;
-        return view('admin.desa.create',compact('form','template'));
+        return view('admin.master.create',compact('form','template'));
     }
 
     /**
@@ -106,7 +106,7 @@ class PetugasController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = User::findOrFail($id);
-        return view('admin.desa.show',compact('template','form','data'));
+        return view('admin.master.show',compact('template','form','data'));
     }
 
     /**
@@ -120,7 +120,7 @@ class PetugasController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = User::findOrFail($id);
-        return view('admin.desa.edit',compact('template','form','data'));
+        return view('admin.master.edit',compact('template','form','data'));
     }
 
     /**

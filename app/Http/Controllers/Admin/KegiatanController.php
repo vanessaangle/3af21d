@@ -21,9 +21,9 @@ class KegiatanController extends Controller
 
     public function form(){
         return [
-            ['label' => 'Judul Kegiatan', 'name' => 'judul_kegiatan'],
+            ['label' => 'Judul Kegiatan', 'name' => 'judul_kegiatan','view_index' => true],
             ['label' => 'Isi Kegiatan', 'name' => 'isi_kegiatan','type' => 'ckeditor'],
-            ['label' => 'Kategori', 'name' => 'kategori'],
+            ['label' => 'Kategori', 'name' => 'kategori','view_index' => true],
             ['label' => 'Foto Kegiatan', 'name' => 'foto_kegiatan', 'type' => 'file','required' => ['create']]
         ];
     }
@@ -35,9 +35,10 @@ class KegiatanController extends Controller
     public function index()
     {
         $template = (object) $this->template;
+        $form = $this->form();
         $data = Kegiatan::where('desa_id',auth('admin')->user()->desa_id)
             ->get();
-        return view('admin.kegiatan.index',compact('template','data'));
+        return view('admin.master.index',compact('template','data','form'));
     }
 
     /**
@@ -49,7 +50,7 @@ class KegiatanController extends Controller
     {
         $template = (object) $this->template;
         $form = $this->form();
-        return view('admin.desa.create', compact('template','form'));
+        return view('admin.master.create', compact('template','form'));
     }
 
     /**
@@ -90,7 +91,7 @@ class KegiatanController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = Kegiatan::findOrFail($id);
-        return view('admin.desa.show',compact('template','form','data'));
+        return view('admin.master.show',compact('template','form','data'));
     }
 
     /**
@@ -104,7 +105,7 @@ class KegiatanController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = Kegiatan::findOrFail($id);
-        return view('admin.desa.edit',compact('template','form','data'));
+        return view('admin.master.edit',compact('template','form','data'));
     }
 
     /**

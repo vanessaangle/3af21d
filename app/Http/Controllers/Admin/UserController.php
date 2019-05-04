@@ -36,15 +36,15 @@ class UserController extends Controller
         ];
 
         return [
-            ['label' => 'Nama Pengguna', 'name' => 'nama'],
-            ['label' => 'Alamat', 'name' => 'alamat'],
+            ['label' => 'Nama Pengguna', 'name' => 'nama','view_index' => true],
+            ['label' => 'Alamat', 'name' => 'alamat','view_index' => true],
             ['label' => 'Tanggal Lahir','name' => 'tgl_lahir', 'type' => 'datepicker'],
-            ['label' => 'Email','name' => 'email'],
-            ['label' => 'Telepon','name' => 'telepon'],
+            ['label' => 'Email','name' => 'email', 'view_index' => true],
+            ['label' => 'Telepon','name' => 'telepon','view_index' => true],
             ['label' => 'Password','name' => 'password','type' => 'password'],
-            ['label' => 'Role','name' => 'role','type' => 'select','option' => $role],
-            ['label' => 'Desa','name' => 'desa_id', 'type' => 'select','option' => $desa],
-            ['label' => 'Status','name' => 'status', 'type' => 'select','option' => $status],
+            ['label' => 'Role','name' => 'role','type' => 'select','option' => $role,'view_index' => true],
+            ['label' => 'Desa','name' => 'desa_id', 'type' => 'select','option' => $desa,'view_index' => true,'view_relation' => 'desa->nama_desa'],
+            ['label' => 'Status','name' => 'status', 'type' => 'select','option' => $status,'view_index' => true],
         ];
     }
     /**
@@ -56,7 +56,8 @@ class UserController extends Controller
     {
         $template = (object) $this->template;
         $data = User::all();
-        return view('admin.user.index',compact('template','data'));
+        $form = $this->form();
+        return view('admin.master.index',compact('template','data','form'));
     }
 
     /**
@@ -68,7 +69,7 @@ class UserController extends Controller
     {
         $form = $this->form();
         $template = (object) $this->template;
-        return view('admin.user.create',compact('template','form'));
+        return view('admin.master.create',compact('template','form'));
     }
 
     /**
@@ -116,7 +117,7 @@ class UserController extends Controller
         $template = (object)$this->template;
         $form = $this->form();
         $data = User::findOrFail($id);
-        return view('admin.desa.show',compact('template','data','form'));
+        return view('admin.master.show',compact('template','data','form'));
     }
 
     /**
@@ -130,7 +131,7 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $template = (object)$this->template;
         $form = $this->form();
-        return view('admin.user.edit',compact('template','form','data'));
+        return view('admin.master.edit',compact('template','form','data'));
     }
 
     /**

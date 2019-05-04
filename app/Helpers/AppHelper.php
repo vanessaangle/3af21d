@@ -186,4 +186,26 @@ class AppHelper{
         return $uploaded;
     }
 
+    public static function viewRelation($object,$relation)
+    {
+        $arr = explode('->',$relation);
+        switch (count($arr)) {
+            case 1:
+                return $object->{$arr[0]};
+                break;
+            case 2:
+                return $object->{$arr[0]}->{$arr[1]};
+                break;
+            case 3:
+                return $object->{$arr[0]}->{$arr[1]}->{$arr[2]};
+                break;
+            case 4:
+                return $object->{$arr[0]}->{$arr[1]}->{$arr[2]}->{$arr[3]};
+                break;
+            default:
+                return 'Relation more than 4, please add ';
+                break;
+        }
+    }
+
 }
