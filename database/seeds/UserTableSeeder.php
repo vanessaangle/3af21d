@@ -14,10 +14,10 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $desa = Desa::create([
-            'nama_desa' => 'Ababi',
+            'nama_desa' => 'Dalung',
             'deskripsi' => '-',
-            'alamat' => 'Jalan Kepundung Desa Ababi Kecamatan Rendang Karangasem Bali',
-            'email' => 'ababi.rendang@karangasemkab.go.id',
+            'alamat' => 'jalan araya dalung',
+            'email' => 'dalung@gmail.com',
             'status_desa' => '-'
         ]);
 

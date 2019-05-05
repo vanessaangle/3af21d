@@ -23,10 +23,12 @@ class DesaController extends Controller
             ['label' => 'Nama Desa', 'name' => 'nama_desa','view_index' => true],
             ['label' => 'Deskripsi Desa', 'name' => 'deskripsi', 'type' => 'textarea'],
             ['label' => 'Alamat','name' => 'alamat','type' => 'textarea'],
+            ['label' => 'Telepon','name' => 'telepon','type' => 'text'],
             ['label' => 'Email','name' => 'email','type' => 'email','view_index' => true],
             ['label' => 'Status Desa', 'name' => 'status_desa','view_index' => true],
             ['label' => 'Maksimal User', 'name' => 'user_limit','type' => 'number','view_index' => true],
             ['label' => 'Maksimal Kegiatan','name' => 'limit_kegiatan', 'type' => 'number','view_index' => true],
+            ['label' => 'Peta','type' => 'text','name' => 'peta']
         ];
     }
     /**

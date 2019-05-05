@@ -34,7 +34,7 @@ class WebController extends Controller
             ->get();
         $form = $this->form();
         $template = (object) $this->template;
-        return view('admin.petugas.index',compact('data','form','template'));
+        return view('admin.master.index',compact('data','form','template'));
     }
 
     /**
@@ -46,7 +46,7 @@ class WebController extends Controller
     {
         $form = $this->form();
         $template = (object) $this->template;
-        return view('admin.desa.create',compact('form','template'));
+        return view('admin.master.create',compact('form','template'));
     }
 
     /**
@@ -58,7 +58,7 @@ class WebController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gambar' => 'required|mimes:jpg,png,jpeg'
+            'gambar' => 'required|mimes:jpg,png,jpeg,svg'
         ]);
         $files = AppHelper::uploader($this->form(),$request);
         GambarDepan::create([
@@ -80,7 +80,7 @@ class WebController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = GambarDepan::findOrFail($id);
-        return view('admin.desa.show',compact('template','form','data'));
+        return view('admin.master.show',compact('template','form','data'));
     }
 
     /**
@@ -94,7 +94,7 @@ class WebController extends Controller
         $template = (object) $this->template;
         $form = $this->form();
         $data = GambarDepan::findOrFail($id);
-        return view('admin.desa.edit',compact('template','form','data'));
+        return view('admin.master.edit',compact('template','form','data'));
     }
 
     /**

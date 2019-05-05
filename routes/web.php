@@ -13,6 +13,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
+Route::get('/desa/{desa}', 'HomeController@index');
 Route::get('/home', function(){
     return redirect('/');
 });

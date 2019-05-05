@@ -29,12 +29,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition login-page" style="background-image : url('{{asset("image/logo-login.jpeg")}}');background-size: cover;  ">
+<body class="hold-transition login-page" style="background-image : url('{{asset("web/img/logo-login.jpeg")}}');background-size: cover;  ">
     <div class="login-box">
         <div class="login-logo">
-            <img src="{{asset('image/logo.png')}}" alt="" width="120px">
+            <img src="{{asset('web/img/logo-intro.png')}}" alt="" width="300px">
         </div>
-        <h3 class="text-center" style="color : white">CLOUD DESA</h3>
+        <h3 class="text-center" style="color : white">Kecamatan Kuta Utara</h3>
         <!-- /.login-logo -->
         {{-- Memunculkan alert pemberitahuan --}}
         {!!Alert::showBox()!!}   
