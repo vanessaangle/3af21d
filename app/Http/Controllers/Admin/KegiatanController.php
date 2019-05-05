@@ -20,10 +20,15 @@ class KegiatanController extends Controller
     ];
 
     public function form(){
+        $kategori = [
+            ['value' => 'Berita','name' => 'Berita'],
+            ['value' => 'Sosial','name' => 'Sosial'],
+            ['value' => 'Lomba','name' => 'Lomba']
+        ];
         return [
             ['label' => 'Judul Kegiatan', 'name' => 'judul_kegiatan','view_index' => true],
             ['label' => 'Isi Kegiatan', 'name' => 'isi_kegiatan','type' => 'ckeditor'],
-            ['label' => 'Kategori', 'name' => 'kategori','view_index' => true],
+            ['label' => 'Kategori', 'name' => 'kategori','type' => 'select','option' => $kategori,'view_index' => true],
             ['label' => 'Foto Kegiatan', 'name' => 'foto_kegiatan', 'type' => 'file','required' => ['create']]
         ];
     }
