@@ -20,6 +20,7 @@
   <!-- Libraries CSS Files -->
   <link href="{{asset('web')}}/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="{{asset('web')}}/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="{{asset('web')}}/lib/flexslider/flexslider.css" rel="stylesheet">
   <link href="{{asset('web')}}/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="{{asset('web')}}/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="{{asset('web')}}/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
@@ -54,7 +55,7 @@
 
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
-          <li class="active"><a href="#intro">Home</a></li>
+          <li class="active"><a href="#home">Home</a></li>
           <li><a href="#about">Deskripsi</a></li>
           <li><a href="#why-us">Penduduk</a></li>
           <li><a href="#portfolio">Kegiatan</a></li>
@@ -67,26 +68,21 @@
   <!--==========================
     Intro Section
   ============================-->
-  <section id="intro" class="clearfix">
-    <div class="container">
-
-      <div class="intro-img">
-        <img src="{{asset($desa->gambar_depan->gambar)}}" alt="" class="img-fluid" width="70%">
-      </div>
-
-      <div class="intro-info">
-        <h2>Website Resmi Pemerintah<br>Desa {{$desa->nama_desa}}</h2>
-        {{-- <div>
-          <a href="#about" class="btn-get-started scrollto">Get Started</a>
-          <a href="#services" class="btn-services scrollto">Our Services</a>
-        </div> --}}
-      </div>
-
-    </div>
-  </section><!-- #intro -->
-
+  
   <main id="main">
-
+    
+    <section id="home">      
+        <div class="flexslider">
+          <ul class="slides">
+            @foreach($desa->gambar_depan as $key => $val)
+            <li>
+              <img src="/{{$val->gambar}}" />
+            </li>  
+            @endforeach   
+          </ul>
+        </div>
+        
+    </section>
     <!--==========================
       About Us Section
     ============================-->
@@ -109,45 +105,8 @@
       <div class="container">
         <header class="section-header">
           <h3>Penduduk Desa {{$desa->nama_desa}}</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+          <p>Berikut adalah data jumlah penduduk desa dalung yang aktif</p>
         </header>
-
-        <div class="row row-eq-height justify-content-center">
-
-          <div class="col-lg-4 mb-4">
-            <div class="card wow bounceInUp">
-                <i class="fa fa-diamond"></i>
-              <div class="card-body">
-                <h5 class="card-title">Corporis dolorem</h5>
-                <p class="card-text">Deleniti optio et nisi dolorem debitis. Aliquam nobis est temporibus sunt ab inventore officiis aut voluptatibus.</p>
-                <a href="#" class="readmore">Read more </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-4">
-            <div class="card wow bounceInUp">
-                <i class="fa fa-language"></i>
-              <div class="card-body">
-                <h5 class="card-title">Voluptates dolores</h5>
-                <p class="card-text">Voluptates nihil et quis omnis et eaque omnis sint aut. Ducimus dolorum aspernatur.</p>
-                <a href="#" class="readmore">Read more </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-4">
-            <div class="card wow bounceInUp">
-                <i class="fa fa-object-group"></i>
-              <div class="card-body">
-                <h5 class="card-title">Eum ut aspernatur</h5>
-                <p class="card-text">Autem quod nesciunt eos ea aut amet laboriosam ab. Eos quis porro in non nemo ex. </p>
-                <a href="#" class="readmore">Read more </a>
-              </div>
-            </div>
-          </div>
-
-        </div>
 
         <div class="row counters">
 
@@ -213,6 +172,27 @@
 
       </div>
     </section><!-- #portfolio -->
+
+    <section id="file" class="clearfix">
+        <div class="container">
+  
+          <header class="section-header">
+            <h3 class="section-title">File Administrasi</h3>
+            <p>Silakan download file admistrasi</p>
+          </header>
+
+          <ul>
+            @foreach($desa->administrasi as $key => $val)
+              <li style="list-style-type: none">
+                <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
+              </li>
+            @endforeach
+          </ul>
+  
+          
+  
+        </div>
+      </section><!-- #portfolio -->
 
     <!--==========================
       Contact Section
@@ -351,6 +331,7 @@
   <script src="{{asset('web')}}/lib/mobile-nav/mobile-nav.js"></script>
   <script src="{{asset('web')}}/lib/wow/wow.min.js"></script>
   <script src="{{asset('web')}}/lib/waypoints/waypoints.min.js"></script>
+  <script src="{{asset('web')}}/lib/flexslider/jquery.flexslider.js"></script>
   <script src="{{asset('web')}}/lib/counterup/counterup.min.js"></script>
   <script src="{{asset('web')}}/lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="{{asset('web')}}/lib/isotope/isotope.pkgd.min.js"></script>
@@ -362,5 +343,12 @@
   <script src="{{asset('web')}}/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDX5i1N1RR3DSQTIRu0ZbIyTgorg7Rhg_g&callback=initMap"></script>
+  <script>
+    $(window).load(function() {
+      $('.flexslider').flexslider({
+        animation: "slide"
+      });
+    });
+  </script>
 </body>
 </html>

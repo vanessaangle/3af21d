@@ -16,11 +16,12 @@ class CreateDesasTable extends Migration
         Schema::create('desa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_desa');
+            $table->string('slug');
             $table->text('deskripsi');
-            $table->text('peta');
+            $table->text('peta')->nullable();
             $table->string('alamat');
             $table->string('email')->unique();
-            $table->string('telepon');
+            $table->string('telepon')->nullable();
             $table->string('status_desa');
             $table->integer('user_limit')->default(1);
             $table->integer('limit_kegiatan')->default(10);

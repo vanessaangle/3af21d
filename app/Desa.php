@@ -30,7 +30,7 @@ class Desa extends Model
 
     public function gambar_depan()
     {
-        return $this->hasOne(GambarDepan::class);
+        return $this->hasMany(GambarDepan::class);
     }
 
     public function penduduk()

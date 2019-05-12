@@ -77,6 +77,7 @@ class DesaController extends Controller
         Desa::create([
             'nama_desa' => $request->nama_desa,
             'deskripsi' => $request->deskripsi,
+            'slug' => str_slug($request->nama_desa),
             'alamat' => $request->alamat,
             'email' => $request->email,
             'status_desa' => $request->status_desa,
