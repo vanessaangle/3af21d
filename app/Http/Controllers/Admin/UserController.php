@@ -30,7 +30,7 @@ class UserController extends Controller
         ];
 
         $role = [
-            ['value' => 'Admin','name' => 'Admin'],
+            // ['value' => 'Admin','name' => 'Admin'],
             ['value' => 'Kepala Desa','name' => 'Kepala Desa'],
             ['value' => 'Petugas','name' => 'Petugas'],
         ];

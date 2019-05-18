@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
     {
         $desa = Desa::create([
             'nama_desa' => 'Dalung',
+            'slug' => 'dalung',
             'deskripsi' => '-',
             'alamat' => 'jalan araya dalung',
             'email' => 'dalung@gmail.com',
@@ -23,7 +24,7 @@ class UserTableSeeder extends Seeder
 
         User::create([
             'desa_id' => $desa->id,
-            'email' => 'okanuantara1709@gmail.com',
+            'email' => 'admin@admin.com',
             'password' => bcrypt(123456),
             'nama' => 'I Komang Nuantara',
             'tgl_lahir' => '1994-09-17',
