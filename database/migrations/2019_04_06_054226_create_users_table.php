@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('telepon');
             $table->string('alamat');
             $table->string('role');
-            $table->boolean('status')->default(1);
+            $table->string('status')->default('Aktif');
             $table->timestamps();
             $table->softDeletes();
 
