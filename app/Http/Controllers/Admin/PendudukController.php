@@ -31,6 +31,12 @@ class PendudukController extends Controller
             ['value' => 'Budha','name' => 'Budha'],
             ['value' => 'Konghuchu','name' => 'Konghuchu'],
         ];
+        $status = [
+            ['value' => 'Menikah','name' => 'Menikah'],
+            ['value' => 'Belum Menikah','name' => 'Belum Menikah'], 
+            ['value' => 'Duda','name' => 'Duda'],
+            ['value' => 'Janda','name' => 'Janda']
+        ];
         return [
            ['label' => 'NIK','name' => 'nik','view_index' => true],
            ['label' => 'Nama','name' => 'nama','view_index' => true],
@@ -40,7 +46,7 @@ class PendudukController extends Controller
            ['label' => 'Agama','name' => 'agama','type' => 'select','option' => $agama,'view_index' => true],
            ['label' => 'Pekerjaan','name' => 'pekerjaan','view_index' => true],
            ['label' => 'Golongan Darah','name' => 'golongan_darah','view_index' => true],
-           ['label' => 'Status','name' => 'status','view_index' => true]
+           ['label' => 'Status','name' => 'status','view_index' => true,'type' => 'select','option' => $status]
         ];
     }
     /**

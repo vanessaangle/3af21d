@@ -21,6 +21,7 @@ Route::get('/home', function(){
 Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middleware' => 'auth'], function(){
     Route::get('/','DashboardController@index')->name('dashboard.index');
     Route::get('/user/profile','UserController@profile')->name('user.profile');
+    Route::post('/user/profile','UserController@setProfile')->name('user.profile.update');
     Route::resources([
         '/user' => 'UserController',
         '/desa' => 'DesaController',

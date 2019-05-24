@@ -37,7 +37,16 @@
         <h3 class="text-center" style="color : white">Kecamatan Kuta Utara</h3>
         <!-- /.login-logo -->
         {{-- Memunculkan alert pemberitahuan --}}
-        {!!Alert::showBox()!!}   
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <div class="login-box-body">
             <p class="login-box-msg">LOGIN</p>

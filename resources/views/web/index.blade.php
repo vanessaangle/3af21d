@@ -31,7 +31,7 @@
   <!-- Main Stylesheet File -->
   <link href="{{asset('web')}}/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
-
+  
   <!-- =======================================================
     Theme Name: NewBiz
     Theme URL: https://bootstrapmade.com/newbiz-bootstrap-business-template/
@@ -59,6 +59,8 @@
           <li><a href="#about">Deskripsi</a></li>
           <li><a href="#why-us">Penduduk</a></li>
           <li><a href="#portfolio">Kegiatan</a></li>
+          <li><a href="#file">File</a></li>
+          <li><a href="#contact">Kontak</a></li>
         </ul>
       </nav><!-- .main-nav -->
       
@@ -108,6 +110,13 @@
           <p>Berikut adalah data jumlah penduduk desa dalung yang aktif</p>
         </header>
 
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-xs-6 col-xs-offset-3">
+              <canvas id="pendudukChart" width="400" height="400"></canvas>
+            </div>
+          </div>
+        </div>
         <div class="row counters">
 
           <div class="col-lg-4 col-6 text-center">
@@ -201,7 +210,7 @@
       <div class="container-fluid">
 
         <div class="section-header">
-          <h3>Contact Us</h3>
+          <h3>Kontak Kami</h3>
         </div>
 
         <div class="row wow fadeInUp">
@@ -216,43 +225,19 @@
             <div class="row">
               <div class="col-md-5 info">
                 <i class="ion-ios-location-outline"></i>
-                <p>A108 Adam Street, NY 535022</p>
+                <p>{{$desa->alamat}}</p>
               </div>
               <div class="col-md-4 info">
                 <i class="ion-ios-email-outline"></i>
-                <p>info@example.com</p>
+                <p>{{$desa->email}}</p>
               </div>
               <div class="col-md-3 info">
                 <i class="ion-ios-telephone-outline"></i>
-                <p>+1 5589 55488 55</p>
+                <p>{{$desa->telepon}}</p>
               </div>
             </div>
 
-            <div class="form">
-              <div id="sendmessage">Your message has been sent. Thank you!</div>
-              <div id="errormessage"></div>
-              <form action="" method="post" role="form" class="contactForm">
-                <div class="form-row">
-                  <div class="form-group col-lg-6">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                    <div class="validation"></div>
-                  </div>
-                  <div class="form-group col-lg-6">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                    <div class="validation"></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                  <div class="validation"></div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                  <div class="validation"></div>
-                </div>
-                <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
-              </form>
-            </div>
+            
           </div>
 
         </div>
@@ -350,5 +335,30 @@
       });
     });
   </script>
+  <script>
+    var ctx = document.getElementById('pendudukChart');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Perempuan', 'Laki-laki'],
+            datasets: [{
+                label: '# Jumlah Penduduk',
+                data: [{!!$totalPerempuan!!}, {!!$totalLaki!!}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],             
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    display : false                    
+                }]
+            }
+        }
+    });
+    </script>
 </body>
 </html>

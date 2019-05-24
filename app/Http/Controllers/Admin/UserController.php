@@ -8,6 +8,7 @@ use App\Desa;
 use App\User;
 use App\Helpers\Alert;
 use Carbon\Carbon;
+use Auth;
 
 class UserController extends Controller
 {
@@ -25,8 +26,8 @@ class UserController extends Controller
             ->get()
             ->toArray();
         $status = [
-            ['value' => 1,'name' => 'Aktif'],
-            ['value' => 0,'name' => 'Tidak Aktif']
+            ['value' => 'Aktif','name' => 'Aktif'],
+            ['value' => 'Tidak Aktif','name' => 'Tidak Aktif']
         ];
 
         $role = [
@@ -171,6 +172,9 @@ class UserController extends Controller
             'status' => $request->status,
             'nama' => $request->nama
         ];
+        if($request->password == null){
+            unset($data['password']);
+        }
         $user->update($data);
         Alert::make('success','Berhasil mengubah data');
         return redirect(route($this->template['route'].'.index'));
@@ -191,6 +195,14 @@ class UserController extends Controller
 
     public function profile()
     {
-        
+        $data = User::findOrFail(auth()->user()->id);
+        $template = (object)$this->template;
+        $form = $this->form();
+        return view('admin.master.profile',compact('template','form','data'));
+    }
+
+    public function setProfile(Request $r)
+    {
+
     }
 }
