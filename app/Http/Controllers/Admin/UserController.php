@@ -195,14 +195,45 @@ class UserController extends Controller
 
     public function profile()
     {
+        $hidden = ['email','role','desa_id','status'];
         $data = User::findOrFail(auth()->user()->id);
         $template = (object)$this->template;
         $form = $this->form();
+        foreach($form as $key => $frm){
+            if(in_array($frm['name'],$hidden)){
+                unset($form[$key]);
+            }
+        }
         return view('admin.master.profile',compact('template','form','data'));
     }
 
-    public function setProfile(Request $r)
+    public function setProfile(Request $request)
     {
-
+        $request->validate([
+            'tgl_lahir' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'nama' => 'required'
+        ]);
+        if($request->password != null){
+            $request->validate([
+                'password' => 'required|confirmed|min:6'
+            ]);
+        }
+        $user = User::findOrFail(auth()->user()->id);
+        $pass = $user->password;
+        $data = [
+            'password' => $request->has('password') ? bcrypt($request->password) : $pass,
+            'tgl_lahir' => Carbon::parse($request->tgl_lahir)->format('Y-m-d'),
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'nama' => $request->nama
+        ];
+        if($request->password == null){
+            unset($data['password']);
+        }
+        $user->update($data);
+        Alert::make('success','Berhasil mengubah data');
+        return back();
     }
 }

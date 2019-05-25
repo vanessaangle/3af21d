@@ -20,6 +20,7 @@
         <section class="content">
            <div class="row">
                 <div class="col-md-12">
+                    {!!Alert::showBox()!!}
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -33,7 +34,7 @@
                         <div class="box-header">
                             <h3 class="box-title"><i class="{{$template->icon}}"></i> Profile</h3>                            
                         </div>
-                        <form action="{{url('user/profile')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.user.profile.update')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="box-body">  
                                     @foreach($form as $value)
