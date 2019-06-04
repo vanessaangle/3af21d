@@ -60,6 +60,7 @@
           <li><a href="#why-us">Penduduk</a></li>
           <li><a href="#portfolio">Kegiatan</a></li>
           <li><a href="#file">File</a></li>
+          <li><a href="#struktur">File</a></li>
           <li><a href="#contact">Kontak</a></li>
         </ul>
       </nav><!-- .main-nav -->
@@ -201,18 +202,72 @@
           
   
         </div>
-      </section><!-- #portfolio -->
+    </section><!-- #portfolio -->
+
+    <section id="struktur" class="clearfix">
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Struktur Organisasi</h3>
+          <p>Struktur organisasi pegawai Desa {{$desa->dalung}}</p>
+        </header>
+
+        <ul>
+          @foreach($desa->administrasi as $key => $val)
+            <li style="list-style-type: none">
+              <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
+            </li>
+          @endforeach
+        </ul>
+      </div>
+  </section><!-- #portfolio -->
+
+    <section id="file" class="clearfix">
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">File Administrasi</h3>
+          <p>Silakan download file admistrasi</p>
+        </header>
+
+        <ul>
+          @foreach($desa->administrasi as $key => $val)
+            <li style="list-style-type: none">
+              <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
+            </li>
+          @endforeach
+        </ul>
+        <section id="file" class="clearfix">
+          <div class="container">
+    
+            <header class="section-header">
+              <h3 class="section-title">File Administrasi</h3>
+              <p>Silakan download file admistrasi</p>
+            </header>
+  
+            <ul>
+              @foreach($desa->administrasi as $key => $val)
+                <li style="list-style-type: none">
+                  <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
+                </li>
+              @endforeach
+            </ul>
+    
+            
+    
+          </div>
+        </section><!-- #portfolio -->
+      </div>
+    </section><!-- #portfolio -->
 
     <!--==========================
       Contact Section
     ============================-->
     <section id="contact">
       <div class="container-fluid">
-
         <div class="section-header">
           <h3>Kontak Kami</h3>
         </div>
-
         <div class="row wow fadeInUp">
 
           <div class="col-lg-6">
@@ -245,6 +300,8 @@
       </div>
     </section><!-- #contact -->
 
+
+
   </main>
 
   <!--==========================
@@ -256,14 +313,12 @@
         <div class="row">
 
           <div class="col-lg-4 col-md-6 footer-info">
-            <h3>Dalung</h3>
+            <h3>Desa {{$desa->nama_desa}}</h3>
             <p>{{$desa->deskripsi}}</p>
           </div>
 
-        
-
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Desa {{$desa->nama_desa}}</h4>
+            <h4>Kontak Desa {{$desa->nama_desa}}</h4>
             <p>
               {{$desa->alamat}} <br>
               Kuta Utara,<br>
@@ -271,19 +326,7 @@
               <strong>Email:</strong> {{$desa->email}}<br>    
               <strong>Telepon:</strong> {{$desa->telepon}}<br>         
             </p>
-
-            {{-- <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div> --}}
-
           </div>
-
-          
-
         </div>
       </div>
     </div>

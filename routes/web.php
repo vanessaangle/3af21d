@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
         '/petugas' => 'PetugasController',
         '/penduduk' => 'PendudukController',
         '/web' => 'WebController',
-        '/administrasi' => 'AdministrasiController'
+        '/administrasi' => 'AdministrasiController',
+        '/pegawai' => 'PegawaiController'
     ]);
 });

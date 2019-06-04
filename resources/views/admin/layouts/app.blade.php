@@ -175,6 +175,14 @@
                             </a>
                         </li>   
                     @endif
+                    @if(AppHelper::access(['Admin']))
+                        <li class="{{$template->menu == 'pegawai' ? 'active' : ''}}">
+                            <a href="{{route('admin.pegawai.index')}}"  >
+                                <i class="fa fa-users"></i> 
+                                <span>Manajemen Pegawai</span>
+                            </a>
+                        </li>   
+                    @endif
                 </ul>
             </section>
             <!-- /.sidebar -->
