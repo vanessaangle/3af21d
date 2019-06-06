@@ -39,7 +39,17 @@
     License: https://bootstrapmade.com/license/
   ======================================================= -->
 </head>
+<style>
+  th,td{
+    border: none;
+  }
 
+  #file,
+  #struktur{
+    padding-bottom: 40px;
+    padding-top: 40px;
+  }
+</style>
 <body>
   
 
@@ -213,10 +223,39 @@
         </header>
 
         <ul>
-          @foreach($desa->administrasi as $key => $val)
-            <li style="list-style-type: none">
-              <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
-            </li>
+          @foreach($desa->pegawai as $key => $val)
+            <div class="col-sm-12" style="padding-bottom:20px;">
+              <div class="col-sm-2">
+                <img src="/{{$val->foto}}" alt="" width="100%">
+              </div>
+              <div class="col-sm-10">
+                <table class="">
+                  <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Nama</td>
+                      <td style="width:30px;">:</td>
+                      <td>{{$val->nama}}</td>
+                    </tr>
+                    <tr>
+                        <td>Jabatan</td>
+                        <td>:</td>
+                        <td>{{$val->jabatan}}</td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>:</td>
+                        <td>{{$val->alamat}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
           @endforeach
         </ul>
       </div>

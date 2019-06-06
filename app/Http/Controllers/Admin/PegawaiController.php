@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Pegawai;
 use App\Desa;
 use App\Helpers\Alert;
+use App\Helpers\AppHelper;
 
 class PegawaiController extends Controller
 {
@@ -64,7 +65,13 @@ class PegawaiController extends Controller
                 'label' => 'Jabatan',
                 'name' => 'jabatan',
                 'type' => 'select',
-                'option' => $jabatan
+                'option' => $jabatan,
+                'view_index' => true
+            ],
+            [
+                'label' => 'Foto',
+                'name' => 'foto',
+                'type' => 'file'
             ]
         ];
     }
@@ -111,6 +118,8 @@ class PegawaiController extends Controller
             'jabatan' => 'required'
         ]);
 
+        $file = AppHelper::uploader($this->form(),$request);
+
         Pegawai::create([
             'nip' =>$request->nip,
             'nama' =>$request->nama,
@@ -119,6 +128,7 @@ class PegawaiController extends Controller
             'alamat' =>$request->alamat,
             'hp' =>$request->hp,
             'jabatan' =>$request->jabatan,
+            'foto' => $file['foto']
         ]);
 
         Alert::make('success','Berhasil  simpan data');

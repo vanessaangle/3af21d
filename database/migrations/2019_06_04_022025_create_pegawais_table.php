@@ -22,6 +22,7 @@ class CreatePegawaisTable extends Migration
             $table->string('alamat');
             $table->string('hp');
             $table->string('jabatan');
+            $table->text('foto');
             $table->timestamps();
 
             $table->foreign('desa_id')->references('id')->on('desa');

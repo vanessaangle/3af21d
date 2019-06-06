@@ -37,4 +37,9 @@ class Desa extends Model
     {
         return $this->hasMany(Penduduk::class);
     }
+
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }
