@@ -60,7 +60,7 @@
           <li><a href="#why-us">Penduduk</a></li>
           <li><a href="#portfolio">Kegiatan</a></li>
           <li><a href="#file">File</a></li>
-          <li><a href="#struktur">File</a></li>
+          <li><a href="#struktur">Struktur Organisasi</a></li>
           <li><a href="#contact">Kontak</a></li>
         </ul>
       </nav><!-- .main-nav -->
@@ -222,43 +222,6 @@
       </div>
   </section><!-- #portfolio -->
 
-    <section id="file" class="clearfix">
-      <div class="container">
-
-        <header class="section-header">
-          <h3 class="section-title">File Administrasi</h3>
-          <p>Silakan download file admistrasi</p>
-        </header>
-
-        <ul>
-          @foreach($desa->administrasi as $key => $val)
-            <li style="list-style-type: none">
-              <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
-            </li>
-          @endforeach
-        </ul>
-        <section id="file" class="clearfix">
-          <div class="container">
-    
-            <header class="section-header">
-              <h3 class="section-title">File Administrasi</h3>
-              <p>Silakan download file admistrasi</p>
-            </header>
-  
-            <ul>
-              @foreach($desa->administrasi as $key => $val)
-                <li style="list-style-type: none">
-                  <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
-                </li>
-              @endforeach
-            </ul>
-    
-            
-    
-          </div>
-        </section><!-- #portfolio -->
-      </div>
-    </section><!-- #portfolio -->
 
     <!--==========================
       Contact Section
