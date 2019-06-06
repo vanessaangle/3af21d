@@ -175,7 +175,7 @@
                             </a>
                         </li>   
                     @endif
-                    @if(AppHelper::access(['Admin']))
+                    @if(AppHelper::access(['Petugas']))
                         <li class="{{$template->menu == 'pegawai' ? 'active' : ''}}">
                             <a href="{{route('admin.pegawai.index')}}"  >
                                 <i class="fa fa-users"></i> 

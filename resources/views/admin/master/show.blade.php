@@ -51,8 +51,8 @@
                                             <tr>
                                                 <td>{{$item['label']}}</td>
                                                 <td>:</td>
-                                                <td>
-                                                    <a href="{{asset($data->{$item['name']})}}" target="_blank">{{$data->{$item['name']} }}</a>
+                                                <td>                                                    
+                                                    <a href="{{asset($data->{$item['name']})}}" target="_blank"><img src="{{asset($data->{$item['name']})}}" alt="{{asset($data->{$item['name']})}}" style="max-width:300px;"></a>
                                                 </td>
                                             </tr>
                                             @else
