@@ -118,7 +118,7 @@
       <div class="container">
         <header class="section-header">
           <h3>Penduduk Desa {{$desa->nama_desa}}</h3>
-          <p>Berikut adalah data jumlah penduduk desa dalung yang aktif</p>
+          <p>Berikut adalah data jumlah penduduk desa {{$desa->nama_desa}} yang aktif</p>
         </header>
 
         <div class="row">
