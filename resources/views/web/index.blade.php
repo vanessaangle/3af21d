@@ -60,7 +60,8 @@
     <div class="container">
 
       <div class="logo float-left">
-        <h2>DESA {{$desa->nama_desa}}</h2>
+      
+        <h2> <img src="/web/img/logo.jpg" style="max-height:50px;margin-top:-10px" alt=""> DESA {{$desa->nama_desa}}</h2>
       </div>
 
       <nav class="main-nav float-right d-none d-lg-block">
@@ -274,7 +275,8 @@
 
           <div class="col-lg-6">
             <div class="map mb-4 mb-lg-0">
-                {!!$desa->peta!!}
+              <iframe src="{{$desa->peta}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                
             </div>
           </div>
 

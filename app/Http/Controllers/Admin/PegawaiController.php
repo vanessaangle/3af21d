@@ -85,7 +85,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $template = (object) $this->template;
-        $data = Pegawai::all();
+        $data = Pegawai::where('desa_id',Auth::guard()->user()->desa_id)->get();;
         $form = $this->form();
         return view('admin.master.index',compact('template','data','form'));
     }

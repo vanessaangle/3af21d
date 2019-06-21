@@ -76,6 +76,7 @@
                                     <p>
                                         {{Auth::guard('admin')->user()->role}}                                       
                                     </p>
+                                    <small>{{Auth::guard('admin')->user()->desa->nama_desa}}</small>
                                 </li>
 
                                 <!-- Menu Footer-->

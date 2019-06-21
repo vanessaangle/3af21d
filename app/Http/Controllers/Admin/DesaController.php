@@ -28,7 +28,7 @@ class DesaController extends Controller
             ['label' => 'Status Desa', 'name' => 'status_desa','view_index' => true],
             ['label' => 'Maksimal User', 'name' => 'user_limit','type' => 'number','view_index' => true],
             ['label' => 'Maksimal Kegiatan','name' => 'limit_kegiatan', 'type' => 'number','view_index' => true],
-            ['label' => 'Peta','type' => 'text','name' => 'peta']
+            ['label' => 'Link Google Maps','type' => 'text','name' => 'peta']
         ];
     }
     /**
