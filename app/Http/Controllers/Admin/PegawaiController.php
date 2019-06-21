@@ -8,6 +8,7 @@ use App\Pegawai;
 use App\Desa;
 use App\Helpers\Alert;
 use App\Helpers\AppHelper;
+use Auth;
 
 class PegawaiController extends Controller
 {
@@ -21,7 +22,7 @@ class PegawaiController extends Controller
 
     public function form(){
         $desa = Desa::select('id as value','nama_desa as name')
-            ->get();
+            ->where('id',Auth::guard()->user()->desa_id)->get();
         $jabatan = [
             ['value' => 'Kepala Desa','name' => 'Kepala Desa'],
             ['value' => 'Staff','name' => 'Staff']
@@ -71,7 +72,8 @@ class PegawaiController extends Controller
             [
                 'label' => 'Foto',
                 'name' => 'foto',
-                'type' => 'file'
+                'type' => 'file',
+                'required' => false
             ]
         ];
     }
@@ -183,6 +185,12 @@ class PegawaiController extends Controller
         ]);
 
         $data = $request->all();
+        if($request->foto != ''){
+            $file = AppHelper::uploader($this->form(),$request);
+            $data['foto'] = $file['foto'];
+        }else{
+            unset($data['foto']);
+        }
         Pegawai::find($id)->update($data);
         Alert::make('success','Berhasil mengubah data');
         return redirect(route($this->template['route'].'.index'));

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index($desa){
-        $desa = Desa::where('slug','dalung')->first();
+        $desa = Desa::where('slug',$desa)->first();
         $totalPenduduk = Penduduk::where('desa_id',$desa->id)->get()->count();
         $totalLaki= Penduduk::where('jenis_kelamin','Laki Laki')->where('desa_id',$desa->id)->get()->count();
         $totalPerempuan = Penduduk::where('jenis_kelamin','Perempuan')->where('desa_id',$desa->id)->get()->count();

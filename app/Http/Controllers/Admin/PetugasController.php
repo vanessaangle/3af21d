@@ -22,8 +22,8 @@ class PetugasController extends Controller
 
     public function form(){
         $status = [
-            ['value' => 1,'name' => 'Aktif'],
-            ['value' => 0,'name' => 'Tidak Aktif']
+            ['value' => 'Aktif','name' => 'Aktif'],
+            ['value' => 'Tidak Aktif','name' => 'Tidak Aktif']
         ];
 
         return [
