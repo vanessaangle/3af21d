@@ -181,8 +181,8 @@
                   <h4><a href="#">{{$value->judul_kegiatan}}</a></h4>
                   <p>{{$value->kategori}}</p>
                   <div>
-                    <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                    <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                    <a href="{{url('desa/'.$desa->slug.'/berita/'.$value->id)}}" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                    
                   </div>
                 </div>
               </div>

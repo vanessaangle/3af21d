@@ -16,4 +16,11 @@ class HomeController extends Controller
         $kegiatan = Kegiatan::where('desa_id',$desa->id)->get();
         return view('web.index',compact('desa','totalPenduduk','totalLaki','totalPerempuan','kegiatan'));
     }
+
+    public function berita($desa,$id)
+    {
+        $desa = Desa::where('slug',$desa)->first();
+        $berita = Kegiatan::find($id);
+        return view('web.singgle',compact('desa','berita'));
+    }
 }
