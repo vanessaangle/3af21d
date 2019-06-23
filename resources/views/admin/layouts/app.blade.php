@@ -70,7 +70,17 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
+                                @if (Auth::guard('admin')->user()->role == 'Admin' )
                                 <li class="user-header">
+                                    <img src="{{Auth::guard('admin')->user()->foto != '' ? asset('image').'/'.Auth::guard('admin')->user()->foto : asset('admin-lte').'/dist/img/user2-160x160.jpg'}}" class="img-circle" alt="User Image">
+
+                                    <p>
+                                        {{Auth::guard('admin')->user()->role}}                                       
+                                    </p>
+                                </li>
+
+                                @else
+                                    <li class="user-header">
                                     <img src="{{Auth::guard('admin')->user()->foto != '' ? asset('image').'/'.Auth::guard('admin')->user()->foto : asset('admin-lte').'/dist/img/user2-160x160.jpg'}}" class="img-circle" alt="User Image">
 
                                     <p>
@@ -78,6 +88,7 @@
                                     </p>
                                     <small>{{Auth::guard('admin')->user()->desa->nama_desa}}</small>
                                 </li>
+                                @endif
 
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
@@ -192,11 +203,7 @@
         @yield('content')
         
         <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
-            </div>
-            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-            reserved.
+            <strong>Copyright &copy; 2019 </strong> Pemerintah Kabupaten Badung.
         </footer>
         
         <!-- /.control-sidebar -->
