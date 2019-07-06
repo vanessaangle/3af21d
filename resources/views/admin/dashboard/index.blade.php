@@ -29,9 +29,21 @@
                 </div>                
             </div>
             @else
-            
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                Data Penduduk {{auth()->user()->desa->nama_desa}}
+                            </div>
+                            <div class="box-body">
+                                <canvas id="penduduk1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
-            <!-- /.row (main row) -->
+
+           
 
         </section>
         <!-- /.content -->
@@ -41,4 +53,40 @@
 
 @push('js')
     <script src="{{asset('admin-lte')}}/bower_components/chart.js/Chart.js"></script>
+    @if (auth()->user()->role != 'Admin')
+    <script>
+            $(function(){
+                var penduduk1 = $('#penduduk1').get(0).getContext('2d');
+                var penduduk1Chart = new Chart(penduduk1);
+                var penduduk1Data = JSON.parse('{{json_encode($penduduk1)}}')
+                ];
+                var penduduk1Options = {
+                    //Boolean - Whether we should show a stroke on each segment
+                    segmentShowStroke    : true,
+                    //String - The colour of each segment stroke
+                    segmentStrokeColor   : '#fff',
+                    //Number - The width of each segment stroke
+                    segmentStrokeWidth   : 2,
+                    //Number - The percentage of the chart that we cut out of the middle
+                    percentageInnerCutout: 50, // This is 0 for Pie charts
+                    //Number - Amount of animation steps
+                    animationSteps       : 100,
+                    //String - Animation easing effect
+                    animationEasing      : 'easeOutBounce',
+                    //Boolean - Whether we animate the rotation of the Doughnut
+                    animateRotate        : true,
+                    //Boolean - Whether we animate scaling the Doughnut from the centre
+                    animateScale         : false,
+                    //Boolean - whether to make the chart responsive to window resizing
+                    responsive           : true,
+                    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                    maintainAspectRatio  : true,
+                    //String - A legend template
+                    legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+                }
+                penduduk1Chart.Doughnut(penduduk1Data,penduduk1Options);
+            });
+        </script>
+    @endif
+    
 @endpush

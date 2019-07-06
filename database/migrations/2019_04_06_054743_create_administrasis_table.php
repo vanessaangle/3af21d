@@ -18,6 +18,7 @@ class CreateAdministrasisTable extends Migration
             $table->bigInteger('desa_id')->unsigned();
             $table->string('file');
             $table->string('judul');
+            $table->text('deskripsi');
             $table->timestamps();
             $table->softDeletes();
 

@@ -24,9 +24,11 @@
                     <div class="box box-info">
                         <div class="box-header">
                             <h3 class="box-title"><i class="{{$template->icon}}"></i> List {{$template->title}}</h3>
-                            <a href="{{route("$template->route".'.create')}}" class="btn btn-primary pull-right">
-                                <i class="fa fa-pencil"></i> Tambah {{$template->title}}
-                            </a>
+                            @if (auth()->user()->role != 'Kepala Desa')
+                                <a href="{{route("$template->route".'.create')}}" class="btn btn-primary pull-right">
+                                    <i class="fa fa-pencil"></i> Tambah {{$template->title}}
+                                </a>
+                            @endif
                         </div>
                         <div class="box-body">
                             <table class="table" id="datatables">
@@ -57,13 +59,18 @@
                                                 @endif
                                             @endforeach
                                             <td>
-                                                <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
+                                                @if (auth()->user()->role != 'Kepala Desa')
+                                                    <a href="{{route("$template->route".'.edit',[$row->id])}}" class="btn btn-success btn-sm">Ubah</a>
+                                                @endif
                                                 <a href="{{route("$template->route".'.show',[$row->id])}}" class="btn btn-info btn-sm">Lihat</a>
+                                                @if (auth()->user()->role != 'Kepala Desa')
                                                 <a href="#" class="btn btn-danger btn-sm" onclick="confirm('Lanjutkan ?') ? $('#frmDelete{{$row->id}}').submit() : ''">Hapus</a>
                                                 <form action="{{route("$template->route".'.destroy',[$row->id])}}" method="POST" id="frmDelete{{$row->id}}">
                                                     {{ csrf_field() }}
                                                     @method('DELETE')
                                                 </form>
+                                                @endif
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

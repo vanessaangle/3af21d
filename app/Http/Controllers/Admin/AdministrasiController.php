@@ -22,6 +22,11 @@ class AdministrasiController extends Controller
         return [
             ['label' => 'Judul', 'name' => 'judul','view_index' => true],
             ['label' => 'File', 'name' => 'file','view_index' => true,'type' => 'file','required' => ['create']],
+            [
+                'label' => 'Deskripsi',
+                'name' => 'deskripsi',
+                'type' => 'textarea'
+            ]
         ];
     }
     /**
@@ -60,7 +65,8 @@ class AdministrasiController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'file' => 'required'
+            'file' => 'required',
+            'deskripsi' => 'required'
         ]);
         $files = AppHelper::uploader($this->form(),$request);
         Administrasi::create([
@@ -110,7 +116,8 @@ class AdministrasiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required'
+            'judul' => 'required',
+            'deskripsi' => 'required'
         ]);
         $adm = Administrasi::find($id);
         $file = $adm->file;
