@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Penduduk;
 use Carbon\Carbon;
 use Alert;
+use App\Exports\PendudukExport;
 
 class PendudukController extends Controller
 {
@@ -185,5 +186,10 @@ class PendudukController extends Controller
         Penduduk::find($id)->delete();
         Alert::make('success','Berhasil hapus data');
         return redirect(route($this->template['route'].'.index'));
+    }
+
+    public function download()
+    {
+        return (new PendudukExport)->download('Penduduk.xlsx');
     }
 }

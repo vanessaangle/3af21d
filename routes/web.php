@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin','as' => 'admin.','middl
     Route::get('/','DashboardController@index')->name('dashboard.index');
     Route::get('/user/profile','UserController@profile')->name('user.profile');
     Route::post('/user/profile','UserController@setProfile')->name('user.profile.update');
+    Route::get('penduduk/download','PendudukController@download');
     Route::resources([
         '/user' => 'UserController',
         '/desa' => 'DesaController',

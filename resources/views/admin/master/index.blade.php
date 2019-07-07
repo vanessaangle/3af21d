@@ -31,6 +31,9 @@
                             @endif
                         </div>
                         <div class="box-body">
+                            <a href="{{url('admin/penduduk/download')}}" class="btn btn-primary"><i class="fa fa-download"></i> Download (.xlsx)</a>
+                            <br>
+                            <br>
                             <table class="table" id="datatables">
                                 <thead>
                                     <tr>
