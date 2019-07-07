@@ -31,9 +31,11 @@
                             @endif
                         </div>
                         <div class="box-body">
+                            @if ($template->menu == 'penduduk')
                             <a href="{{url('admin/penduduk/download')}}" class="btn btn-primary"><i class="fa fa-download"></i> Download (.xlsx)</a>
                             <br>
                             <br>
+                            @endif
                             <table class="table" id="datatables">
                                 <thead>
                                     <tr>
