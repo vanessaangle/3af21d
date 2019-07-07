@@ -33,10 +33,20 @@
                     <div class="col-md-6">
                         <div class="box box-success">
                             <div class="box-header with-border">
-                                Data Penduduk {{auth()->user()->desa->nama_desa}}
+                                Data Jumlah Jenis Kelamin Penduduk {{auth()->user()->desa->nama_desa}}
                             </div>
                             <div class="box-body">
                                 <canvas id="penduduk1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                Data Penduduk Dengan Status Menikah {{auth()->user()->desa->nama_desa}}
+                            </div>
+                            <div class="box-body">
+                                <canvas id="penduduk2"></canvas>
                             </div>
                         </div>
                     </div>
@@ -57,9 +67,11 @@
     <script>
             $(function(){
                 var penduduk1 = $('#penduduk1').get(0).getContext('2d');
+                var penduduk2 = $('#penduduk2').get(0).getContext('2d');
                 var penduduk1Chart = new Chart(penduduk1);
-                var penduduk1Data = JSON.parse('{{json_encode($penduduk1)}}')
-                ];
+                var penduduk2Chart = new Chart(penduduk2)
+                var penduduk1Data = JSON.parse('{!! json_encode($penduduk1) !!}');
+                var penduduk2Data = JSON.parse('{!! json_encode($penduduk2) !!}');
                 var penduduk1Options = {
                     //Boolean - Whether we should show a stroke on each segment
                     segmentShowStroke    : true,
@@ -85,6 +97,7 @@
                     legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
                 }
                 penduduk1Chart.Doughnut(penduduk1Data,penduduk1Options);
+                penduduk2Chart.Doughnut(penduduk2Data,penduduk1Options);
             });
         </script>
     @endif
