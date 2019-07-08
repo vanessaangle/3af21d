@@ -31,6 +31,8 @@
   <!-- Main Stylesheet File -->
   <link href="{{asset('web')}}/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+
+  
   
   <!-- =======================================================
     Theme Name: NewBiz
@@ -155,41 +157,29 @@
       Portfolio Section
     ============================-->
     <section id="portfolio" class="clearfix">
-      <div class="container">
+      <div class="container kegiatan-section" >
 
         <header class="section-header">
           <h3 class="section-title">Kegiatan</h3>
-        </header>
-
-        <div class="row">
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">Semua</li>
-              <li data-filter=".filter-Berita">Berita</li>
-              <li data-filter=".filter-Sosial">Sosial</li>
-              <li data-filter=".filter-Lomba">Lomba</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container">
-          @foreach($kegiatan as $key => $value):
-            <div class="col-lg-4 col-md-6 portfolio-item filter-{{$value->kategori}}">
-              <div class="portfolio-wrap">
-                <img src="{{asset($value->foto_kegiatan)}}" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4><a href="#">{{$value->judul_kegiatan}}</a></h4>
-                  <p>{{$value->kategori}}</p>
-                  <div>
-                    <a href="{{url('desa/'.$desa->slug.'/berita/'.$value->id)}}" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                    
-                  </div>
-                </div>
+        </header>       
+        
+        @foreach ($kegiatan as $item)
+          <div class="row" style="margin-bottom:25px">
+            <div class="col-sm-12">
+              <div class="col-sm-2">
+                <img src="{{asset($item->foto_kegiatan)}}" width="100%" alt="">
               </div>
-            </div>
-          @endforeach
+              <div class="col-sm-8">
+                <h3 style="margin-bottom:3px;">{{$item->judul_kegiatan}}</h3>                
+                <div class="label label-default">#{{$item->kategori}}</div> <br> <br>
+                <a class="btn btn-primary btn-sm" href="{{url('desa/'.$desa->slug.'/berita/'.$item->id)}}"><i class="fa fa-eye"></i> Baca</a>
+              </div>
+            </div>              
+          </div>
+        @endforeach
 
-        </div>
+
+
 
       </div>
     </section><!-- #portfolio -->
@@ -205,7 +195,8 @@
           <ul>
             @foreach($desa->administrasi as $key => $val)
               <li style="list-style-type: none">
-                <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a>
+                <a href="/{{$val->file}}" target="__blank" style="font-size:25px"><i class="ion-ios-download-outline" style="font-size:30px"></i> {{$val->judul}}</a> <br>
+                <small>{{$val->deskripsi}}</small>
               </li>
             @endforeach
           </ul>
@@ -318,7 +309,7 @@
 
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>Desa {{$desa->nama_desa}}</h3>
-            <p>{{$desa->deskripsi}}</p>
+           
           </div>
 
           <div class="col-lg-3 col-md-6 footer-contact">

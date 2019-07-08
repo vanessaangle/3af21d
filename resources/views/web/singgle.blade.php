@@ -100,11 +100,8 @@
     ============================-->
     <section id="about">
       <div class="container">
-
-        <header class="section-header">
-          <h3>{{$berita->judul_kegiatan}}</h3>
-          {!! $berita->isi_kegiatan !!}
-        </header>
+        <h2>{{$berita->judul_kegiatan}}</h2>
+        {!! $berita->isi_kegiatan !!}
       </div>
     </section><!-- #about -->
 

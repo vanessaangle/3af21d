@@ -72,7 +72,8 @@ class AdministrasiController extends Controller
         Administrasi::create([
             'desa_id' => auth()->user()->desa_id,
             'file' => $files['file'],
-            'judul' => $request->judul
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi
         ]);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
@@ -126,7 +127,8 @@ class AdministrasiController extends Controller
         }
         $adm->update([
             'judul' => $request->judul,
-            'file' => $file
+            'file' => $file,
+            'deskripsi' => $request->deskripsi
         ]);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
