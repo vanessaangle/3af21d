@@ -43,6 +43,7 @@ class KegiatanController extends Controller
         $form = $this->form();
         $data = Kegiatan::where('desa_id',auth('admin')->user()->desa_id)
             ->get();
+            
         return view('admin.master.index',compact('template','data','form'));
     }
 

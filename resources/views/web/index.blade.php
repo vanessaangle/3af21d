@@ -164,7 +164,7 @@
         </header>       
         
         @foreach ($kegiatan as $item)
-          <div class="row" style="margin-bottom:25px">
+          <div class="row kegiatan-row" style="margin-bottom:25px">
             <div class="col-sm-12">
               <div class="col-sm-2">
                 <img src="{{asset($item->foto_kegiatan)}}" width="100%" alt="">
@@ -177,6 +177,12 @@
             </div>              
           </div>
         @endforeach
+
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-default show-more">Tampilan Lebih Banyak</button>
+          </div>
+        </div>
 
 
 
@@ -371,6 +377,31 @@
       $('.flexslider').flexslider({
         animation: "slide"
       });
+
+      function showKegiatan(show){        
+        $('.kegiatan-row').map(function(i,d){
+          console.log(show);
+          if(i < show){
+            $(this).css('display','block')
+          }else{
+            $(this).css('display','none')
+          }
+        })
+
+        if($('.kegiatan-row').length <= show){
+          $('.show-more').css('display','none');
+        }
+      }
+
+      var show = 4;
+      showKegiatan(show);
+
+      $('.show-more').click(function(){
+        show += 4;
+        showKegiatan(show);
+      })
+      
+      
     });
   </script>
   <script>
