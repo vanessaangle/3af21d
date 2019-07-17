@@ -39,6 +39,11 @@ class KegiatanController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->role == 'Kepala Desa'){
+            $this->template['config']['index.create.is_show'] = false;
+            $this->template['config']['index.delete.is_show'] = false;
+            $this->template['config']['index.edit.is_show'] = false;
+        }
         $template = (object) $this->template;
         $form = $this->form();
         $data = Kegiatan::where('desa_id',auth('admin')->user()->desa_id)

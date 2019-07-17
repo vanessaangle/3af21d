@@ -128,7 +128,7 @@ class Render
         return "
 			<div class='form-group'>
 				<label for=\"$this->name\">$this->label</label>
-				<input type=\"$this->type\" $this->required id=\"$this->name\" name=\"$this->name\" class=\"\" placeholder=\"$this->placeholder\" value=\"" . $value . "\">    	
+				<input type=\"$this->type\" $this->required id=\"$this->name\" name=\"$this->name\" class=\"\" placeholder=\"$this->placeholder\" value=\"" . $value . "\" $this->attr>    	
 			</div>
         ";
     }

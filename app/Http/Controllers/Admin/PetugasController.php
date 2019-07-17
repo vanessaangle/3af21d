@@ -17,7 +17,11 @@ class PetugasController extends Controller
         'route' => 'admin.petugas',
         'menu' => 'petugas',
         'icon' => 'fa fa-user',
-        'theme' => 'skin-red'
+        'theme' => 'skin-red',
+        'config' => [
+            'index.delete.is_show' => true,
+            'index.create.is_show' => true,
+        ]
     ];
 
     public function form(){
@@ -43,6 +47,11 @@ class PetugasController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->role == 'Kepala Desa'){
+            $this->template['config']['index.delete.is_show'] = false;
+            $this->template['config']['index.create.is_show'] = false;
+        }
+        
         $data = User::where('desa_id',auth()->user()->desa_id)
             ->where('role','Petugas')
             ->get();

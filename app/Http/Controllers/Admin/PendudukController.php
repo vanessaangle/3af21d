@@ -8,6 +8,7 @@ use App\Penduduk;
 use Carbon\Carbon;
 use Alert;
 use App\Exports\PendudukExport;
+use App\Helpers\AppHelper;
 
 class PendudukController extends Controller
 {
@@ -16,7 +17,10 @@ class PendudukController extends Controller
         'route' => 'admin.penduduk',
         'menu' => 'penduduk',
         'icon' => 'fa fa-group',
-        'theme' => 'skin-red'
+        'theme' => 'skin-red',
+        'config' => [
+            'index.create.is_show' => 'true'
+        ]
     ];
 
     public function form(){
@@ -47,7 +51,9 @@ class PendudukController extends Controller
            ['label' => 'Agama','name' => 'agama','type' => 'select','option' => $agama,'view_index' => true],
            ['label' => 'Pekerjaan','name' => 'pekerjaan','view_index' => true],
            ['label' => 'Golongan Darah','name' => 'golongan_darah','view_index' => true],
-           ['label' => 'Status','name' => 'status','view_index' => true,'type' => 'select','option' => $status]
+           ['label' => 'Status','name' => 'status','view_index' => true,'type' => 'select','option' => $status],
+           ['label' => 'Foto','name' => 'foto', 'type' => 'file','attr' => 'accept="image/*"'],
+           ['label' => 'Update Terakhir', 'name' => 'updated_at','view_index' => true, 'type' => 'hidden','required' => []]
         ];
     }
     /**
@@ -56,7 +62,13 @@ class PendudukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        if(auth()->user()->role == 'Kepala Desa'){
+            $this->template['config']['index.create.is_show'] = false;
+            $this->template['config']['index.delete.is_show'] = false;
+            $this->template['config']['index.edit.is_show'] = false;
+        }
+
         $data = Penduduk::where('desa_id',auth()->user()->desa_id)
             ->get();
         $form = $this->form();
@@ -93,8 +105,11 @@ class PendudukController extends Controller
             'agama' => 'required',
             'pekerjaan' => 'required',
             'golongan_darah' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'foto' => 'required'
         ]);
+
+        $uploader = AppHelper::uploader($this->form(),$request);
 
         Penduduk::create([
             'desa_id' => auth()->user()->desa_id,
@@ -106,7 +121,8 @@ class PendudukController extends Controller
             'agama' => $request->agama,
             'pekerjaan' => $request->pekerjaan,
             'golongan_darah' => $request->golongan_darah,
-            'status' => $request->status
+            'status' => $request->status,
+            'foto' => $uploader['foto']
         ]);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
@@ -160,7 +176,7 @@ class PendudukController extends Controller
             'golongan_darah' => 'required',
             'status' => 'required'
         ]);
-        Penduduk::find($id)->update([
+        $data = [
             'nik' => $request->nik,
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -170,7 +186,12 @@ class PendudukController extends Controller
             'pekerjaan' => $request->pekerjaan,
             'golongan_darah' => $request->golongan_darah,
             'status' => $request->status
-        ]);
+        ];
+        if($request->has('foto')){
+            $uploader = AppHelper::uploader($this->form(),$request);
+            $data['foto'] = $uploader['foto'];
+        }
+        Penduduk::find($id)->update($data);
         Alert::make('success','Berhasil simpan data');
         return redirect(route($this->template['route'].'.index'));
     }
