@@ -32,9 +32,9 @@ class DashboardController extends Controller
             ->map(function($item) use (&$penduduk1){
                 $penduduk1[] = [
                     'value' => $item->total,
-                    'label' => $item->status,
-                    'color' => $item->jenis_kelamin == 'Perempuan' ? '#00a65a' : '#f56954',
-                    'highlight' => $item->jenis_kelamin == 'Perempuan' ? '#00a65a' : '#f56954',
+                    'label' => $item->jenis_kelamin,
+                    'color' => $item->jenis_kelamin != 'Perempuan' ? '#00a65a' : '#f56954',
+                    'highlight' => $item->jenis_kelamin != 'Perempuan' ? '#00a65a' : '#f56954',
                 ];
             });
         
