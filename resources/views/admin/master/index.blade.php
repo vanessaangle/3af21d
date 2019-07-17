@@ -90,14 +90,17 @@
     <!-- page script -->
     <script>
     $(function () {
-        $('#datatables').DataTable()
+        $('#datatables').DataTable({
+            "order": [[ 0, "desc" ]]
+        })
         $('#full-datatables').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false,
+            
         })
     })
     </script>
