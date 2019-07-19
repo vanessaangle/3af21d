@@ -38,6 +38,16 @@
                             <div class="box-body">
                                 <canvas id="penduduk1"></canvas>
                             </div>
+                            <div class="box-footer">
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #f56954"></div>
+                                    <div style="float-left" class="text">Perempuan</div>
+                                </div>
+                                <div style="display:flex">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #00a65a"></div>
+                                    <div style="float-left" class="text">Laki-laki</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -47,6 +57,20 @@
                             </div>
                             <div class="box-body">
                                 <canvas id="penduduk2"></canvas>
+                            </div>
+                            <div class="box-footer">
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #00a65a"></div>
+                                    <div style="float-left" class="text">Menikah</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #f56954"></div>
+                                    <div style="float-left" class="text">Duda</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #03A9F4"></div>
+                                    <div style="float-left" class="text">Janda</div>
+                                </div>
                             </div>
                         </div>
                     </div>

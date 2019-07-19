@@ -166,12 +166,13 @@
         @foreach ($kegiatan as $item)
           <div class="row kegiatan-row" style="margin-bottom:25px">
             <div class="col-sm-12">
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 <img src="{{asset($item->foto_kegiatan)}}" width="100%" alt="">
               </div>
               <div class="col-sm-8">
-                <h3 style="margin-bottom:3px;">{{$item->judul_kegiatan}}</h3>                
-                <div class="label label-default">#{{$item->kategori}}</div> <br> <br>
+                <div class="label label-default">#{{$item->kategori}}</div>
+                <h3 style="margin-bottom:3px;margin-top:3px">{{$item->judul_kegiatan}}</h3> 
+                <p>{{substr(strip_tags($item->isi_kegiatan),0,300)}}</p>               
                 <a class="btn btn-primary btn-sm" href="{{url('desa/'.$desa->slug.'/berita/'.$item->id)}}"><i class="fa fa-eye"></i> Baca</a>
               </div>
             </div>              
