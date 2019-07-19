@@ -13,10 +13,11 @@ class PendudukExport implements FromCollection {
         $penduduk =  Penduduk::where('desa_id',auth()->user()->desa_id)
             ->get();
         
-        $data[] = ['NIK','Nama','Jenis Kelamin','Tempat Lahir','Tanggal Lahir','Agama','Pekerjaan','Golongan Darah','Status'];
+        $data[] = ['NIK','NO KK','Nama','Jenis Kelamin','Tempat Lahir','Tanggal Lahir','Agama','Pekerjaan','Golongan Darah','Status'];
         foreach($penduduk as $p){
             $data[] = [
                 $p->nik,
+                $p->no_kk,
                 $p->nama,
                 $p->jenis_kelamin,
                 $p->tempat_lahir,

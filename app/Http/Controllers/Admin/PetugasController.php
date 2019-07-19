@@ -48,8 +48,8 @@ class PetugasController extends Controller
     public function index()
     {
         if(auth()->user()->role == 'Kepala Desa'){
-            $this->template['config']['index.delete.is_show'] = false;
-            $this->template['config']['index.create.is_show'] = false;
+            $this->template['config']['index.delete.is_show'] = true;
+            $this->template['config']['index.create.is_show'] = true;
         }
         
         $data = User::where('desa_id',auth()->user()->desa_id)

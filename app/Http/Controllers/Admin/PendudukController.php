@@ -44,6 +44,7 @@ class PendudukController extends Controller
         ];
         return [
            ['label' => 'NIK','name' => 'nik','view_index' => true],
+           ['label' => 'No KK', 'name' => 'no_kk', 'view_index' => true],
            ['label' => 'Nama','name' => 'nama','view_index' => true],
            ['label' => 'Jenis Kelamin', 'name' => 'jenis_kelamin','type' => 'select', 'option' => $jenis, 'view_index' => true],
            ['label' => 'Tempat Lahir','name' => 'tempat_lahir','view_index' => true],
@@ -52,7 +53,7 @@ class PendudukController extends Controller
            ['label' => 'Pekerjaan','name' => 'pekerjaan','view_index' => true],
            ['label' => 'Golongan Darah','name' => 'golongan_darah','view_index' => true],
            ['label' => 'Status','name' => 'status','view_index' => true,'type' => 'select','option' => $status],
-           ['label' => 'Foto','name' => 'foto', 'type' => 'file','attr' => 'accept="image/*"'],
+           ['label' => 'Foto','name' => 'foto', 'type' => 'file','attr' => 'accept="image/*"', 'required' => ['create']],
            ['label' => 'Update Terakhir', 'name' => 'updated_at','view_index' => true, 'type' => 'hidden','required' => []]
         ];
     }
@@ -98,6 +99,7 @@ class PendudukController extends Controller
     {
         $request->validate([
             'nik' => 'required|unique:penduduk,nik',
+            'no_kk' => 'required',
             'nama' => 'required',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
@@ -113,6 +115,7 @@ class PendudukController extends Controller
 
         Penduduk::create([
             'desa_id' => auth()->user()->desa_id,
+            'no_kk' => $request->no_kk,
             'nik' => $request->nik,
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -168,6 +171,7 @@ class PendudukController extends Controller
         $request->validate([
             'nik' => 'required|unique:penduduk,nik,'.$id,
             'nama' => 'required',
+            'no_kk' => 'required',
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
@@ -178,6 +182,7 @@ class PendudukController extends Controller
         ]);
         $data = [
             'nik' => $request->nik,
+            'no_kk' => $request->no_kk,
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tempat_lahir' => $request->tempat_lahir,
