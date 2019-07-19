@@ -13,7 +13,9 @@ class HomeController extends Controller
         $totalPenduduk = Penduduk::where('desa_id',$desa->id)->get()->count();
         $totalLaki= Penduduk::where('jenis_kelamin','Laki Laki')->where('desa_id',$desa->id)->get()->count();
         $totalPerempuan = Penduduk::where('jenis_kelamin','Perempuan')->where('desa_id',$desa->id)->get()->count();
-        $kegiatan = Kegiatan::where('desa_id',$desa->id)->get();
+        $kegiatan = Kegiatan::where('desa_id',$desa->id)
+            ->orderBy('created_at','desc')
+            ->get();
         return view('web.index',compact('desa','totalPenduduk','totalLaki','totalPerempuan','kegiatan'));
     }
 
