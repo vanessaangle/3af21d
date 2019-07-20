@@ -59,6 +59,7 @@
                                 <canvas id="penduduk2"></canvas>
                             </div>
                             <div class="box-footer">
+                                
                                 <div style="display:flex;margin-bottom:10px;">
                                     <div style="margin-right:10px;width:20px;height:20px;background-color : #e53935"></div>
                                     <div style="float-left" class="text">Belum Menikah</div>
