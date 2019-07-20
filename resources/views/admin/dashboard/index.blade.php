@@ -60,6 +60,10 @@
                             </div>
                             <div class="box-footer">
                                 <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #e53935"></div>
+                                    <div style="float-left" class="text">Belum Menikah</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
                                     <div style="margin-right:10px;width:20px;height:20px;;background-color : #00a65a"></div>
                                     <div style="float-left" class="text">Menikah</div>
                                 </div>
@@ -71,6 +75,7 @@
                                     <div style="margin-right:10px;width:20px;height:20px;background-color : #03A9F4"></div>
                                     <div style="float-left" class="text">Janda</div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
