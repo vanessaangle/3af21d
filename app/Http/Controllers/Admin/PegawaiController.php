@@ -65,7 +65,7 @@ class PegawaiController extends Controller
             [
                 'label' => 'Jabatan',
                 'name' => 'jabatan',
-                'type' => 'select',
+                'type' => 'text',
                 'option' => $jabatan,
                 'view_index' => true
             ],
@@ -117,7 +117,8 @@ class PegawaiController extends Controller
             'tanggal_lahir' => 'required',
             'alamat' => 'required',
             'hp' => 'required',
-            'jabatan' => 'required'
+            'jabatan' => 'required',
+            'foto' => 'required|mimes:jpg,png'
         ]);
 
         $file = AppHelper::uploader($this->form(),$request);

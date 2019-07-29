@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Desa;
 use App\Helpers\Alert;
+use App\Helpers\AppHelper;
 
 class DesaController extends Controller
 {
@@ -28,6 +29,7 @@ class DesaController extends Controller
             ['label' => 'Status Desa', 'name' => 'status_desa','view_index' => true],
             ['label' => 'Maksimal User', 'name' => 'user_limit','type' => 'number','view_index' => true],
             ['label' => 'Maksimal Kegiatan','name' => 'limit_kegiatan', 'type' => 'number','view_index' => true],
+            ['label' => 'Foto Organisasi','name' => 'foto_organisasi', 'type' => 'file', 'required' => ['create']],
             ['label' => 'Link Google Maps','type' => 'text','name' => 'peta']
         ];
     }
@@ -71,8 +73,11 @@ class DesaController extends Controller
             'email' => 'required',
             'status_desa' => 'required',
             'user_limit' => 'required',
-            'limit_kegiatan' => 'required'
+            'limit_kegiatan' => 'required',
+            'foto_organisasi' => 'required|mimes:jpg,png'
         ]);
+
+        $uploader = AppHelper::uploader($this->form(),$request);
 
         Desa::create([
             'nama_desa' => $request->nama_desa,
@@ -82,7 +87,10 @@ class DesaController extends Controller
             'email' => $request->email,
             'status_desa' => $request->status_desa,
             'user_limit' => $request->user_limit,
-            'limit_kegiatan' => $request->limit_kegiatan
+            'limit_kegiatan' => $request->limit_kegiatan,
+            'foto_organisasi' => $uploader['foto_organisasi'],
+            'peta' => $request->peta,
+            'telepon' => $request->telepon
         ]);
 
         Alert::make('success','Berhasil  simpan data');
@@ -106,7 +114,7 @@ class DesaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idfoto_organisasi
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -133,9 +141,16 @@ class DesaController extends Controller
             'email' => "required|unique:desa,email,$id",
             'status_desa' => 'required',
             'user_limit' => 'required',
-            'limit_kegiatan' => 'required'
+            'limit_kegiatan' => 'required',
+            'foto_organisasi' => 'mimes:jpg,png'
         ]);
         $data = $request->all();
+        if($request->hasFile('foto_organisasi')){
+            $uploader = AppHelper::uploader($this->form(),$request);
+            $data['foto_organisasi'] = $uploader['foto_organisasi'];
+        }else{
+            unset($data['foto_organisasi']);
+        }
         Desa::find($id)->update($data);
         Alert::make('success','Berhasil mengubah data');
         return redirect(route($this->template['route'].'.index'));

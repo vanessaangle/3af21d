@@ -42,6 +42,16 @@ class PendudukController extends Controller
             ['value' => 'Duda','name' => 'Duda'],
             ['value' => 'Janda','name' => 'Janda']
         ];
+        $goldar = [
+            ['value' => 'O', 'name' => 'O'],
+            ['value' => 'A', 'name' => 'A'],
+            ['value' => 'B', 'name' => 'B'],
+            ['value' => 'AB', 'name' => 'AB'],
+        ];
+        $is_pendatang = [
+            ['value' => 'Ya', 'name' => 'Ya'],
+            ['value' => 'Tidak', 'name' => 'Tidak'],
+        ];
         return [
            ['label' => 'NIK','name' => 'nik','view_index' => true],
            ['label' => 'No KK', 'name' => 'no_kk', 'view_index' => true],
@@ -51,9 +61,10 @@ class PendudukController extends Controller
            ['label' => 'Tanggal Lahir','name' => 'tgl_lahir', 'type' => 'datepicker'],
            ['label' => 'Agama','name' => 'agama','type' => 'select','option' => $agama,'view_index' => true],
            ['label' => 'Pekerjaan','name' => 'pekerjaan','view_index' => true],
-           ['label' => 'Golongan Darah','name' => 'golongan_darah','view_index' => true],
+           ['label' => 'Golongan Darah','name' => 'golongan_darah','view_index' => true,'type' => 'select', 'option' => $goldar],
            ['label' => 'Status','name' => 'status','view_index' => true,'type' => 'select','option' => $status],
            ['label' => 'Foto','name' => 'foto', 'type' => 'file','attr' => 'accept="image/*"', 'required' => ['create']],
+           ['label' => 'Apakah pendatang', 'name' => 'is_pendatang','type' => 'select', 'option' => $is_pendatang],
            ['label' => 'Update Terakhir', 'name' => 'updated_at','view_index' => true, 'type' => 'hidden','required' => []]
         ];
     }

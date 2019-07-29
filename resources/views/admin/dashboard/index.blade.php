@@ -80,6 +80,94 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                Golongan Darah Pada {{auth()->user()->desa->nama_desa}}
+                            </div>
+                            <div class="box-body">
+                                <canvas id="penduduk3"></canvas>
+                            </div>
+                            <div class="box-footer">
+                                
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
+                                    <div style="float-left" class="text">O</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
+                                    <div style="float-left" class="text">A</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #9795C6"></div>
+                                    <div style="float-left" class="text">B</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #DB8A0B"></div>
+                                    <div style="float-left" class="text">AB</div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                Agama Penduduk Pada {{auth()->user()->desa->nama_desa}}
+                            </div>
+                            <div class="box-body">
+                                <canvas id="penduduk4"></canvas>
+                            </div>
+                            <div class="box-footer">
+                                
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
+                                    <div style="float-left" class="text">Hindu</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
+                                    <div style="float-left" class="text">Islam</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #9795C6"></div>
+                                    <div style="float-left" class="text">Katolik</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #DB8A0B"></div>
+                                    <div style="float-left" class="text">Protestan</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #00A7D0"></div>
+                                    <div style="float-left" class="text">Buddha</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #ECF0F5"></div>
+                                    <div style="float-left" class="text">Konghuchu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                Penduduk Pendatang Pada {{auth()->user()->desa->nama_desa}}
+                            </div>
+                            <div class="box-body">
+                                <canvas id="penduduk5"></canvas>
+                            </div>
+                            <div class="box-footer">
+                                
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
+                                    <div style="float-left" class="text">Pendatang</div>
+                                </div>
+                                <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
+                                    <div style="float-left" class="text">Bukan Pendatang</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endif
 
@@ -98,10 +186,19 @@
             $(function(){
                 var penduduk1 = $('#penduduk1').get(0).getContext('2d');
                 var penduduk2 = $('#penduduk2').get(0).getContext('2d');
+                var penduduk3 = $('#penduduk3').get(0).getContext('2d');
+                var penduduk4 = $('#penduduk4').get(0).getContext('2d');
+                var penduduk5 = $('#penduduk5').get(0).getContext('2d');
                 var penduduk1Chart = new Chart(penduduk1);
                 var penduduk2Chart = new Chart(penduduk2)
+                var penduduk3Chart = new Chart(penduduk3)
+                var penduduk4Chart = new Chart(penduduk4)
+                var penduduk5Chart = new Chart(penduduk5)
                 var penduduk1Data = JSON.parse('{!! json_encode($penduduk1) !!}');
                 var penduduk2Data = JSON.parse('{!! json_encode($penduduk2) !!}');
+                var penduduk3Data = JSON.parse('{!! json_encode($penduduk3) !!}');
+                var penduduk4Data = JSON.parse('{!! json_encode($penduduk4) !!}');
+                var penduduk5Data = JSON.parse('{!! json_encode($penduduk5) !!}');
                 var penduduk1Options = {
                     //Boolean - Whether we should show a stroke on each segment
                     segmentShowStroke    : true,
@@ -128,6 +225,9 @@
                 }
                 penduduk1Chart.Doughnut(penduduk1Data,penduduk1Options);
                 penduduk2Chart.Doughnut(penduduk2Data,penduduk1Options);
+                penduduk3Chart.Doughnut(penduduk3Data,penduduk1Options);
+                penduduk4Chart.Doughnut(penduduk4Data,penduduk1Options);
+                penduduk5Chart.Doughnut(penduduk5Data,penduduk1Options);
             });
         </script>
     @endif
