@@ -39,14 +39,12 @@
                                 <canvas id="penduduk1"></canvas>
                             </div>
                             <div class="box-footer">
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #f56954"></div>
-                                    <div style="float-left" class="text">Perempuan</div>
-                                </div>
-                                <div style="display:flex">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #00a65a"></div>
-                                    <div style="float-left" class="text">Laki-laki</div>
-                                </div>
+                                @foreach($penduduk1 as $key => $value)
+                                    <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                                        <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -60,22 +58,12 @@
                             </div>
                             <div class="box-footer">
                                 
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #e53935"></div>
-                                    <div style="float-left" class="text">Belum Menikah</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #00a65a"></div>
-                                    <div style="float-left" class="text">Menikah</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #f56954"></div>
-                                    <div style="float-left" class="text">Duda</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #03A9F4"></div>
-                                    <div style="float-left" class="text">Janda</div>
-                                </div>
+                                @foreach($penduduk2 as $key => $value)
+                                    <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                                        <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                                    </div>
+                                @endforeach
                                 
                             </div>
                         </div>
@@ -90,22 +78,12 @@
                             </div>
                             <div class="box-footer">
                                 
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
-                                    <div style="float-left" class="text">O</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
-                                    <div style="float-left" class="text">A</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #9795C6"></div>
-                                    <div style="float-left" class="text">B</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #DB8A0B"></div>
-                                    <div style="float-left" class="text">AB</div>
-                                </div>
+                                @foreach($penduduk3 as $key => $value)
+                                    <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                                        <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                                    </div>
+                                @endforeach
                                 
                             </div>
                         </div>
@@ -120,30 +98,12 @@
                             </div>
                             <div class="box-footer">
                                 
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
-                                    <div style="float-left" class="text">Hindu</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
-                                    <div style="float-left" class="text">Islam</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #9795C6"></div>
-                                    <div style="float-left" class="text">Katolik</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #DB8A0B"></div>
-                                    <div style="float-left" class="text">Protestan</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #00A7D0"></div>
-                                    <div style="float-left" class="text">Buddha</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #ECF0F5"></div>
-                                    <div style="float-left" class="text">Konghuchu</div>
-                                </div>
+                                @foreach($penduduk4 as $key => $value)
+                                    <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                                        <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -157,14 +117,12 @@
                             </div>
                             <div class="box-footer">
                                 
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;background-color : #000000"></div>
-                                    <div style="float-left" class="text">Pendatang</div>
-                                </div>
-                                <div style="display:flex;margin-bottom:10px;">
-                                    <div style="margin-right:10px;width:20px;height:20px;;background-color : #D33725"></div>
-                                    <div style="float-left" class="text">Bukan Pendatang</div>
-                                </div>
+                                @foreach($penduduk5 as $key => $value)
+                                    <div style="display:flex;margin-bottom:10px;">
+                                    <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                                        <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
