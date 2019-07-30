@@ -73,6 +73,7 @@ class PegawaiController extends Controller
                 'label' => 'Foto',
                 'name' => 'foto',
                 'type' => 'file',
+                'attr' => 'accept="image/*',
                 'required' => false
             ]
         ];
@@ -118,7 +119,7 @@ class PegawaiController extends Controller
             'alamat' => 'required',
             'hp' => 'required',
             'jabatan' => 'required',
-            'foto' => 'required|mimes:jpg,png'
+            'foto' => 'required'
         ]);
 
         $file = AppHelper::uploader($this->form(),$request);
