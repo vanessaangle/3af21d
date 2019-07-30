@@ -142,7 +142,6 @@ class DesaController extends Controller
             'status_desa' => 'required',
             'user_limit' => 'required',
             'limit_kegiatan' => 'required',
-            'foto_organisasi' => 'mimes:jpg,png'
         ]);
         $data = $request->all();
         if($request->hasFile('foto_organisasi')){
