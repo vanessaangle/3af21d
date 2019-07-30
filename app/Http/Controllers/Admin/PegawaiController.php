@@ -73,7 +73,7 @@ class PegawaiController extends Controller
                 'label' => 'Foto',
                 'name' => 'foto',
                 'type' => 'file',
-                'attr' => 'accept="image/*',
+                // 'attr' => 'accept="image/* ',
                 'required' => false
             ]
         ];
