@@ -11,7 +11,7 @@
   <link href="{{asset('web')}}/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,200,200i,700,700i|Montserrat:300,200,500,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
   <link href="{{asset('web')}}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,6 +50,19 @@
   #struktur{
     padding-bottom: 40px;
     padding-top: 40px;
+  } 
+  
+  .chart-penduduk{
+    color : #fff;
+    padding-bottom: 30px;
+    /* margin : 20px;  */
+  }
+  .chart-penduduk h4{
+    text-align: center;
+    display: block;
+  }
+  .chart-penduduk canvas{
+    margin-left: -15px;
   }
 </style>
 <body>
@@ -107,8 +120,9 @@
 
         <header class="section-header">
           <h3>Tentang Desa {{$desa->nama_desa}}</h3>
-          <p>{{$desa->deskripsi}}</p>
+         
         </header>
+        <p>{{$desa->deskripsi}}</p>
       </div>
     </section><!-- #about -->
 
@@ -126,30 +140,58 @@
 
         <div class="row">
           <div class="col-xs-12">
-            <div class="col-xs-6 col-xs-offset-3">
-              <canvas id="pendudukChart" width="400" height="400"></canvas>
+            <div class="col-xs-4 chart-penduduk">
+              <canvas id="penduduk1"></canvas>
+              <h4>Jenis Kelamin</h4>
+              @foreach($penduduk1 as $key => $value)
+              <div style="display:flex;margin-bottom:10px;">
+              <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                  <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+              </div>
+              @endforeach
             </div>
+            <div class="col-xs-4 chart-penduduk">
+              <canvas id="penduduk2"></canvas>
+              <h4>Status Pernikahan</h4>
+              @foreach($penduduk2 as $key => $value)
+              <div style="display:flex;margin-bottom:10px;">
+              <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                  <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+              </div>
+              @endforeach
+            </div>
+            <div class="col-xs-4 chart-penduduk">
+                <canvas id="penduduk3"></canvas>
+                <h4>Status Golongan Darah</h4>
+                @foreach($penduduk3 as $key => $value)
+                <div style="display:flex;margin-bottom:10px;">
+                <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                    <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                </div>
+                @endforeach
+            </div>
+            <div class="col-xs-4 chart-penduduk">
+              <canvas id="penduduk4"></canvas>
+              <h4>Agama</h4>
+                @foreach($penduduk4 as $key => $value)
+                <div style="display:flex;margin-bottom:10px;">
+                <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                    <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                </div>
+                @endforeach
+            </div>
+            <div class="col-xs-4 chart-penduduk">
+                <canvas id="penduduk5"></canvas>
+                <h4>Pendatang</h4>
+                @foreach($penduduk5 as $key => $value)
+                <div style="display:flex;margin-bottom:10px;">
+                <div style="margin-right:10px;width:20px;height:20px;background-color : {{$value['color']}}"></div>
+                    <div style="float-left" class="text">{{$value['label']}}</div> : {{$value['value']}}
+                </div>
+                @endforeach
+              </div>
           </div>
         </div>
-        <div class="row counters">
-
-          <div class="col-lg-4 col-6 text-center">
-            <span data-toggle="counter-up">{{$totalPenduduk}}</span>
-            <p>Jumlah Penduduk</p>
-          </div>
-
-          <div class="col-lg-4 col-6 text-center">
-            <span data-toggle="counter-up">{{$totalLaki}}</span>
-            <p>Laki Laki</p>
-          </div>
-
-          <div class="col-lg-4 col-6 text-center">
-            <span data-toggle="counter-up">{{$totalPerempuan}}</span>
-            <p>Perempuan</p>
-          </div>          
-  
-        </div>
-
       </div>
     </section>
 
@@ -220,14 +262,13 @@
           <h3 class="section-title">Struktur Organisasi</h3>
           <p>Struktur organisasi pegawai Desa {{$desa->dalung}}</p>
         </header>
-
-        <ul>
+        <div class="col-sm-12 col-md-6">
           @foreach($desa->pegawai as $key => $val)
             <div class="col-sm-12" style="padding-bottom:20px;">
-              <div class="col-sm-2">
+              <div class="col-sm-4">
                 <img src="/{{$val->foto}}" alt="" width="100%">
               </div>
-              <div class="col-sm-10">
+              <div class="col-sm-8">
                 <table class="">
                   <thead>
                     <th></th>
@@ -250,13 +291,21 @@
                         <td>:</td>
                         <td>{{$val->alamat}}</td>
                     </tr>
+                    <tr>
+                      <td>Telepon</td>
+                      <td>:</td>
+                      <td>{{$val->hp}}</td>
+                  </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           
           @endforeach
-        </ul>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <img src="/{{$desa->foto_organisasi}}" width="100%" alt="">
+        </div>
       </div>
   </section><!-- #portfolio -->
 
@@ -371,7 +420,7 @@
   <script src="{{asset('admin-lte')}}/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <!-- Template Main Javascript File -->
   <script src="{{asset('web')}}/js/main.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <script src="{{asset('admin-lte')}}/bower_components/chart.js/Chart.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDX5i1N1RR3DSQTIRu0ZbIyTgorg7Rhg_g&callback=initMap"></script>
   <script>
     $(window).load(function() {
@@ -406,29 +455,50 @@
     });
   </script>
   <script>
-    var ctx = document.getElementById('pendudukChart');
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Perempuan', 'Laki-laki'],
-            datasets: [{
-                label: '# Jumlah Penduduk',
-                data: [{!!$totalPerempuan!!}, {!!$totalLaki!!}],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],             
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    display : false                    
-                }]
-            }
-        }
-    });
+    var penduduk1 = $('#penduduk1').get(0).getContext('2d');
+    var penduduk2 = $('#penduduk2').get(0).getContext('2d');
+    var penduduk3 = $('#penduduk3').get(0).getContext('2d');
+    var penduduk4 = $('#penduduk4').get(0).getContext('2d');
+    var penduduk5 = $('#penduduk5').get(0).getContext('2d');
+    var penduduk1Chart = new Chart(penduduk1);
+    var penduduk2Chart = new Chart(penduduk2)
+    var penduduk3Chart = new Chart(penduduk3)
+    var penduduk4Chart = new Chart(penduduk4)
+    var penduduk5Chart = new Chart(penduduk5)
+    var penduduk1Data = JSON.parse('{!! json_encode($penduduk1) !!}');
+    var penduduk2Data = JSON.parse('{!! json_encode($penduduk2) !!}');
+    var penduduk3Data = JSON.parse('{!! json_encode($penduduk3) !!}');
+    var penduduk4Data = JSON.parse('{!! json_encode($penduduk4) !!}');
+    var penduduk5Data = JSON.parse('{!! json_encode($penduduk5) !!}');
+    var penduduk1Options = {
+        //Boolean - Whether we should show a stroke on each segment
+        segmentShowStroke    : true,
+        //String - The colour of each segment stroke
+        segmentStrokeColor   : '#fff',
+        //Number - The width of each segment stroke
+        segmentStrokeWidth   : 2,
+        //Number - The percentage of the chart that we cut out of the middle
+        percentageInnerCutout: 50, // This is 0 for Pie charts
+        //Number - Amount of animation steps
+        animationSteps       : 100,
+        //String - Animation easing effect
+        animationEasing      : 'easeOutBounce',
+        //Boolean - Whether we animate the rotation of the Doughnut
+        animateRotate        : true,
+        //Boolean - Whether we animate scaling the Doughnut from the centre
+        animateScale         : false,
+        //Boolean - whether to make the chart responsive to window resizing
+        responsive           : true,
+        // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+        maintainAspectRatio  : true,
+        //String - A legend template
+        legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+    }
+    penduduk1Chart.Doughnut(penduduk1Data,penduduk1Options);
+    penduduk2Chart.Doughnut(penduduk2Data,penduduk1Options);
+    penduduk3Chart.Doughnut(penduduk3Data,penduduk1Options);
+    penduduk4Chart.Doughnut(penduduk4Data,penduduk1Options);
+    penduduk5Chart.Doughnut(penduduk5Data,penduduk1Options);
     </script>
 </body>
 </html>
