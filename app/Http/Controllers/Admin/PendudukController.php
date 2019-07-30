@@ -136,6 +136,7 @@ class PendudukController extends Controller
             'pekerjaan' => $request->pekerjaan,
             'golongan_darah' => $request->golongan_darah,
             'status' => $request->status,
+            'is_pendatang' => $request->is_pendatang,
             'foto' => $uploader['foto']
         ]);
         Alert::make('success','Berhasil simpan data');
@@ -201,6 +202,7 @@ class PendudukController extends Controller
             'agama' => $request->agama,
             'pekerjaan' => $request->pekerjaan,
             'golongan_darah' => $request->golongan_darah,
+            'is_pendatang' => $request->is_pendatang,
             'status' => $request->status
         ];
         if($request->has('foto')){
