@@ -23,7 +23,9 @@ class KegiatanController extends Controller
         $kategori = [
             ['value' => 'Berita','name' => 'Berita'],
             ['value' => 'Sosial','name' => 'Sosial'],
-            ['value' => 'Lomba','name' => 'Lomba']
+            ['value' => 'Lomba','name' => 'Lomba'],
+            ['value' => 'Agenda','name' => 'Agenda'],
+            ['value' => 'Kegiatan','name' => 'Kegiatan']
         ];
         return [
             ['label' => 'Judul Kegiatan', 'name' => 'judul_kegiatan','view_index' => true],
