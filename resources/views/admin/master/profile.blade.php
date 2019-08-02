@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="box-footer">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-default">Kembali</a>
+                                    <a href="/admin/" class="btn btn-default">Kembali</a>
                                 </div>
                             </form>
                     </div>

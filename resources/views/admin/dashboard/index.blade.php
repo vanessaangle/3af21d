@@ -30,7 +30,7 @@
             </div>
             @else
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 Data Jumlah Jenis Kelamin Penduduk {{auth()->user()->desa->nama_desa}}
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 Data Penduduk Dengan Status Menikah {{auth()->user()->desa->nama_desa}}
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 Golongan Darah Pada {{auth()->user()->desa->nama_desa}}
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 Agama Penduduk Pada {{auth()->user()->desa->nama_desa}}
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 Penduduk Pendatang Pada {{auth()->user()->desa->nama_desa}}

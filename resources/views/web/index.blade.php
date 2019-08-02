@@ -264,7 +264,7 @@
         </header>
         <div class="col-sm-12 col-md-6">
           @foreach($desa->pegawai as $key => $val)
-            <div class="col-sm-12" style="padding-bottom:20px;">
+            <div class="col-sm-12 pegawai-row" style="padding-bottom:20px;">
               <div class="col-sm-4">
                 <img src="/{{$val->foto}}" alt="" width="100%">
               </div>
@@ -302,7 +302,11 @@
             </div>
           
           @endforeach
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-default show-more-pegawai">Tampilan Lebih Banyak</button>
+          </div>
         </div>
+        
         <div class="col-sm-12 col-md-6">
           <img src="/{{$desa->foto_organisasi}}" width="100%" alt="">
         </div>
@@ -430,7 +434,7 @@
 
       function showKegiatan(show){        
         $('.kegiatan-row').map(function(i,d){
-          console.log(show);
+          // console.log(show);
           if(i < show){
             $(this).css('display','block')
           }else{
@@ -449,6 +453,31 @@
       $('.show-more').click(function(){
         show += 4;
         showKegiatan(show);
+      })
+
+      //=====================================================
+
+      function showPegawai(show){        
+        $('.pegawai-row').map(function(i,d){
+          console.log(show);
+          if(i < show){
+            $(this).css('display','block')
+          }else{
+            $(this).css('display','none')
+          }
+        })
+
+        if($('.pegawai-row').length <= show){
+          $('.show-more-pegawai').css('display','none');
+        }
+      }
+
+      var showP = 4;
+      showPegawai(showP);
+
+      $('.show-more-pegawai').click(function(){
+        showP += 4;
+        showPegawai(showP);
       })
       
       
